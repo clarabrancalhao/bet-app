@@ -1,6 +1,7 @@
 import React from 'react';
 import RecentGameCard from '../RecentGameCard';
-import { Button, Container, Header, Text1, Title } from './styles';
+import { Container, Header, Text1, Title } from './styles';
+import { Button } from '../GameButton/styles';
 
 const RecentGamesContent = () => {
   return (
