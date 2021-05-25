@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { IGame } from '../../pages/NewGame';
 
 export const GET_GAMES_PENDING = 'GET_GAMES_PENDING';
 export const GET_GAMES_REJECT = 'GET_GAMES_REJECT';
 export const GET_GAMES_FULFILLED = 'GET_GAMES_FULFILLED';
+export const SELECT_GAME = 'SELECT_GAME';
 
 interface Game {
   type: string;
@@ -23,6 +25,17 @@ export const getGames = () => {
       .catch((error) => dispatch(getGamesReject(error)));
   };
 };
+
+export const selectGame = (game: any) => {
+  return (dispatch: any) => {
+    dispatch(setSelectedGame(game));
+  };
+};
+
+const setSelectedGame = (game: IGame) => ({
+  type: SELECT_GAME,
+  payload: game,
+});
 
 const getGamesPending = () => ({
   type: GET_GAMES_PENDING,

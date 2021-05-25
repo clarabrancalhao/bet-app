@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import Cart from '../../components/Cart';
 import Footer from '../../components/Footer';
 import { Button } from '../../components/GameButton/styles';
 import Header from '../../components/Header';
+import { selectGame } from '../../modules/games/actions';
 import {
   BoldParagraph,
   BoldTitle,
@@ -17,7 +19,46 @@ import {
   TitleContainer,
 } from './styles';
 
-const NewGame = () => {
+export interface IGame {
+  color: string;
+  type: string;
+  range: number;
+  description: string;
+}
+
+const NewGame: React.FC = () => {
+  const dispatch = useDispatch();
+  const games: IGame[] = useSelector(
+    (state: RootStateOrAny) => state.games.results
+  );
+  const selectedGame: IGame = useSelector(
+    (state: RootStateOrAny) => state.games.selected
+  );
+
+  console.log(games);
+
+  useEffect(() => {
+    dispatch(selectGame(games[0]));
+  }, [dispatch, games]);
+
+  const handleSelectGame = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const selected: IGame = games.filter(
+      (game) => game['type'] === event!.currentTarget.name
+    )[0];
+
+    dispatch(selectGame(selected));
+  };
+
+  const handleSelectNumber = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(event.currentTarget);
+  };
+
+  let numbers: number[] = [];
+
+  for (let i = 0; i <= selectedGame.range; i++) {
+    numbers = [...numbers, i];
+  }
+
   return (
     <Container>
       <Header />
@@ -25,55 +66,31 @@ const NewGame = () => {
         <NewBetContainer>
           <TitleContainer>
             <BoldTitle>NEW BET </BoldTitle>
-            <LightTitle>FOR MEGASENA</LightTitle>
+            <LightTitle> FOR {selectedGame.type.toUpperCase()}</LightTitle>
           </TitleContainer>
           <BoldParagraph>Choose a game</BoldParagraph>
           <SelectButtonsContainer>
-            <Button color="#01AC66">Teste1</Button>
-            <Button color="#F79C31">teste2</Button>
+            {games.map((game: IGame) => {
+              return (
+                <Button
+                  key={game.type}
+                  name={game.type}
+                  className={selectedGame?.type === game.type ? `active` : ''}
+                  color={game.color}
+                  onClick={handleSelectGame}>
+                  {game.type}
+                </Button>
+              );
+            })}
           </SelectButtonsContainer>
           <BoldParagraph>Fill your bet</BoldParagraph>
-          <RegularParagraph>
-            Mark as many numbers as you want up to a maximum of 50. Win by
-            hitting 15, 16, 17, 18, 19, 20 or none of the 20 numbers drawn.
-          </RegularParagraph>
+          <RegularParagraph>{selectedGame.description}</RegularParagraph>
           <NumbersContainer>
-            <NumberCell>1</NumberCell>
-            <NumberCell>2</NumberCell>
-            <NumberCell>3</NumberCell>
-            <NumberCell>4</NumberCell>
-            <NumberCell>5</NumberCell>
-            <NumberCell>6</NumberCell>
-            <NumberCell>7</NumberCell>
-            <NumberCell>8</NumberCell>
-            <NumberCell>9</NumberCell>
-            <NumberCell>1</NumberCell>
-            <NumberCell>2</NumberCell>
-            <NumberCell>3</NumberCell>
-            <NumberCell>4</NumberCell>
-            <NumberCell>5</NumberCell>
-            <NumberCell>6</NumberCell>
-            <NumberCell>7</NumberCell>
-            <NumberCell>8</NumberCell>
-            <NumberCell>9</NumberCell>
-            <NumberCell>1</NumberCell>
-            <NumberCell>2</NumberCell>
-            <NumberCell>3</NumberCell>
-            <NumberCell>4</NumberCell>
-            <NumberCell>5</NumberCell>
-            <NumberCell>6</NumberCell>
-            <NumberCell>7</NumberCell>
-            <NumberCell>8</NumberCell>
-            <NumberCell>9</NumberCell>
-            <NumberCell>1</NumberCell>
-            <NumberCell>2</NumberCell>
-            <NumberCell>3</NumberCell>
-            <NumberCell>4</NumberCell>
-            <NumberCell>5</NumberCell>
-            <NumberCell>6</NumberCell>
-            <NumberCell>7</NumberCell>
-            <NumberCell>8</NumberCell>
-            <NumberCell>9</NumberCell>
+            {numbers.map((number) => {
+              return (
+                <NumberCell onClick={handleSelectNumber}>{number}</NumberCell>
+              );
+            })}
           </NumbersContainer>
         </NewBetContainer>
         <Cart />

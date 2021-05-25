@@ -38,7 +38,7 @@ export const NewBetContainer = styled.div`
   width: 60%;
 `;
 
-export const NumberCell = styled.div`
+export const NumberCell = styled.button`
   border-radius: 50%;
   background: #adc0c4;
   width: 6.3rem;
@@ -49,6 +49,7 @@ export const NumberCell = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
 `;
 
 export const BoldTitle = styled.h1`
