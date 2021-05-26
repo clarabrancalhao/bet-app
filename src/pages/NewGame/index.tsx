@@ -4,7 +4,12 @@ import Cart from '../../components/Cart';
 import Footer from '../../components/Footer';
 import { Button } from '../../components/GameButton/styles';
 import Header from '../../components/Header';
-import { addNumber, removeNumber } from '../../modules/cart/actions';
+import {
+  addNumber,
+  clearGame,
+  completeGame,
+  removeNumber,
+} from '../../modules/cart/actions';
 import { selectGame } from '../../modules/games/actions';
 import {
   AddCartButton,
@@ -50,6 +55,7 @@ const NewGame: React.FC = () => {
       (game) => game.type === event.currentTarget.name
     );
     if (selectedGame.type !== selected?.type) {
+      dispatch(clearGame());
       dispatch(selectGame(selected));
     }
   };
@@ -76,18 +82,22 @@ const NewGame: React.FC = () => {
       return window.alert('Your game is already completed.');
     }
 
-    let randomNumbers: number[] = selectedNumbers;
+    let randomNumbers: number[] = [...selectedNumbers];
 
     for (let i = 1; i < selectedGame['max-number']; i) {
       const random = Math.floor(Math.random() * (selectedGame.range - 1)) + 1;
       randomNumbers.push(random);
       const uniqueRandomNumbers = [...Array.from(new Set(randomNumbers))];
-      randomNumbers = uniqueRandomNumbers;
+      randomNumbers = uniqueRandomNumbers.sort(function (a, b) {
+        return a - b;
+      });
       i = uniqueRandomNumbers.length;
     }
 
-    console.log(randomNumbers);
+    dispatch(completeGame(randomNumbers));
   };
+
+  const handleAddToCart = () => {};
 
   const numbers = useMemo(
     () => Array.from({ length: selectedGame?.range }, (_, i) => i + 1),
@@ -138,7 +148,7 @@ const NewGame: React.FC = () => {
                     : 'active'
                 }
                 onClick={handleSelectNumber}>
-                {number}
+                {number < 10 ? '0' + number : number}
               </NumberCell>
             ))}
           </NumbersContainer>
@@ -147,7 +157,7 @@ const NewGame: React.FC = () => {
               Complete Game
             </GameButtons>
             <GameButtons>Clear Game</GameButtons>
-            <AddCartButton>Add to Cart</AddCartButton>
+            <AddCartButton onClick={handleAddToCart}>Add to Cart</AddCartButton>
           </BottomButtonContainer>
         </NewBetContainer>
         <Cart />

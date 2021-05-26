@@ -1,6 +1,8 @@
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const ADD_NUMBER = 'ADD_NUMBER';
 export const REMOVE_NUMBER = 'REMOVE_NUMBER';
+export const COMPLETE_GAME = 'COMPLETE_GAME';
+export const CLEAR_GAME = 'CLEAR_GAME';
 
 export interface IGame {
   color: string;
@@ -9,23 +11,10 @@ export interface IGame {
   price: number;
 }
 
-export const addToCart = (game: IGame) => {
-  return (dispatch: any) => {
-    dispatch(addGameToCart(game));
-  };
-};
-
-export const SelectedNumbers = (number: number) => {
-  return (dispatch: any) => {
-    dispatch(addNumber(number));
-  };
-};
-
-export const RemovedNumbers = (number: number) => {
-  return (dispatch: any) => {
-    dispatch(removeNumber(number));
-  };
-};
+export const completeGame = (numbers: number[]) => ({
+  type: COMPLETE_GAME,
+  payload: numbers,
+});
 
 export const addNumber = (number: number) => ({
   type: ADD_NUMBER,
@@ -37,7 +26,11 @@ export const removeNumber = (number: number) => ({
   payload: number,
 });
 
-const addGameToCart = (game: IGame) => ({
+export const addGameToCart = (game: IGame) => ({
   type: ADD_TO_CART,
   payload: game,
+});
+
+export const clearGame = () => ({
+  type: CLEAR_GAME,
 });

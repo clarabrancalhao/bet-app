@@ -1,4 +1,10 @@
-import { ADD_TO_CART, REMOVE_NUMBER, ADD_NUMBER } from './actions';
+import {
+  ADD_TO_CART,
+  REMOVE_NUMBER,
+  ADD_NUMBER,
+  COMPLETE_GAME,
+  CLEAR_GAME,
+} from './actions';
 
 interface IGame {
   name: string;
@@ -34,6 +40,17 @@ function cartReducer(state: IInitialState = initialState, action: IAction) {
         (number) => number !== action.payload
       );
       return { ...state, numbers: filtered };
+    case COMPLETE_GAME:
+      return {
+        ...state,
+        numbers: action.payload,
+      };
+
+    case CLEAR_GAME:
+      return {
+        ...state,
+        numbers: [],
+      };
     default:
       return state;
   }

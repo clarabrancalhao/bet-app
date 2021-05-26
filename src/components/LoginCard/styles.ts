@@ -39,6 +39,13 @@ export const ForgetPasswordText = styled.p`
   font-size: 1.7rem;
 `;
 
+export const ErrorText = styled.p`
+  padding-top: 1rem;
+  color: red;
+  font-size: 1.4rem;
+  font-weight: 600;
+`;
+
 export const Button = styled.button`
   margin: 4.4rem 0;
   width: 100%;
