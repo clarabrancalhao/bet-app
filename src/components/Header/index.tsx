@@ -20,10 +20,10 @@ const Header = () => {
         </TitleContainer>
         <ButtonsContainer>
           <Button>
-            <Text>Account</Text>
+            <Text to="/new-bet">Account</Text>
           </Button>
           <Button>
-            <Text>Log out</Text>
+            <Text to="/login">Log out</Text>
           </Button>
         </ButtonsContainer>
       </Container2>

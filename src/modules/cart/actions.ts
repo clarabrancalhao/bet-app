@@ -11,7 +11,7 @@ export interface IGame {
 
 export const addToCart = (game: IGame) => {
   return (dispatch: any) => {
-    dispatch(add(game));
+    dispatch(addGameToCart(game));
   };
 };
 
@@ -37,7 +37,7 @@ export const removeNumber = (number: number) => ({
   payload: number,
 });
 
-const add = (game: IGame) => ({
+const addGameToCart = (game: IGame) => ({
   type: ADD_TO_CART,
   payload: game,
 });

@@ -15,10 +15,11 @@ interface IGame {
   'min-cart-value': number;
 }
 
-interface IPayload {
+/* interface IPayload {
   games: IGame[];
   error: string;
-}
+  selected: IGame;
+} */
 
 interface IInitialState {
   results: IGame[];
@@ -27,10 +28,10 @@ interface IInitialState {
   selected: IGame | null;
 }
 
-interface IAction {
+/* interface IAction {
   type: string;
   payload: IPayload;
-}
+} */
 
 const initialState = {
   results: [],
@@ -39,13 +40,14 @@ const initialState = {
   selected: null,
 };
 
-function games(state: IInitialState = initialState, actions: IAction) {
-  switch (actions.type) {
+function games(state: IInitialState = initialState, action: any) {
+  switch (action.type) {
     case GET_GAMES_FULFILLED:
       return {
-        results: actions.payload,
+        results: action.payload,
         loading: false,
         error: null,
+        selected: action.payload[0],
       };
     case GET_GAMES_PENDING:
       return {
@@ -58,12 +60,13 @@ function games(state: IInitialState = initialState, actions: IAction) {
       return {
         ...state,
         loading: false,
-        error: actions.payload.error,
+        error: action.payload.error,
       };
+
     case SELECT_GAME:
       return {
         ...state,
-        selected: actions.payload,
+        selected: action.payload,
       };
 
     default:

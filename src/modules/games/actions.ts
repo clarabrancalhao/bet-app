@@ -1,12 +1,11 @@
 import axios from 'axios';
-import { IGame } from '../../pages/NewGame';
 
 export const GET_GAMES_PENDING = 'GET_GAMES_PENDING';
 export const GET_GAMES_REJECT = 'GET_GAMES_REJECT';
 export const GET_GAMES_FULFILLED = 'GET_GAMES_FULFILLED';
 export const SELECT_GAME = 'SELECT_GAME';
 
-interface Game {
+interface IGame {
   type: string;
   description: string;
   range: number;
@@ -28,20 +27,18 @@ export const getGames = () => {
 
 export const selectGame = (game: any) => {
   return (dispatch: any) => {
-    dispatch(setSelectedGame(game));
+    dispatch({
+      type: SELECT_GAME,
+      payload: game,
+    });
   };
 };
-
-const setSelectedGame = (game: IGame) => ({
-  type: SELECT_GAME,
-  payload: game,
-});
 
 const getGamesPending = () => ({
   type: GET_GAMES_PENDING,
 });
 
-const getGamesFulfilled = (games: Game[]) => ({
+const getGamesFulfilled = (games: IGame[]) => ({
   type: GET_GAMES_FULFILLED,
   payload: [...games],
 });

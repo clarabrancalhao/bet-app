@@ -38,6 +38,11 @@ export const NewBetContainer = styled.div`
   width: 60%;
 `;
 
+export const BottomButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
+
 export const NumberCell = styled.button`
   border-radius: 50%;
   background: #adc0c4;
@@ -50,6 +55,10 @@ export const NumberCell = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
+
+  &.active {
+    background: ${({ color }) => color};
+  }
 `;
 
 export const BoldTitle = styled.h1`
@@ -75,4 +84,21 @@ export const RegularParagraph = styled.p`
   font-size: 1.7rem;
   color: #868686;
   font-weight: 400;
+`;
+
+export const GameButtons = styled.button`
+  border: 1px solid #27c383;
+  border-radius: 1rem;
+  padding: 1.7rem 2.2rem;
+  color: #27c383;
+  font-size: 1.6rem;
+`;
+
+export const AddCartButton = styled.button`
+  background: #27c383;
+  border: none;
+  border-radius: 1rem;
+  color: #ffffff;
+  font-size: 1.6rem;
+  padding: 1.7rem 2.2rem;
 `;

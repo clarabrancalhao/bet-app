@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.header`
   width: 100%;
@@ -41,7 +42,7 @@ export const Title = styled.h1`
   text-align: center;
 `;
 
-export const Text = styled.h2`
+export const Text = styled(Link)`
   font-size: 2rem;
   color: #707070;
 `;
