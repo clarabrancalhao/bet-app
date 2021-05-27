@@ -1,12 +1,15 @@
+import games from '../games/reducer';
 import {
   ADD_TO_CART,
   REMOVE_NUMBER,
   ADD_NUMBER,
   COMPLETE_GAME,
   CLEAR_GAME,
+  REMOVE_FROM_CART,
 } from './actions';
 
 interface IGame {
+  id: number;
   name: string;
   numbers: string[];
   price: number;
@@ -30,7 +33,13 @@ const initialState = {
 function cartReducer(state: IInitialState = initialState, action: IAction) {
   switch (action.type) {
     case ADD_TO_CART:
-      return { ...state, games: action.payload };
+      return { ...state, games: [...state.games, action.payload] };
+
+    case REMOVE_FROM_CART:
+      const filteredGames = state.games.filter(
+        (game) => game.id !== action.payload
+      );
+      return { ...state, games: filteredGames };
 
     case ADD_NUMBER:
       return { ...state, numbers: [...state.numbers, action.payload] };

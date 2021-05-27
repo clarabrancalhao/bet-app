@@ -1,4 +1,5 @@
-import React from 'react';
+import { HiOutlineArrowRight } from 'react-icons/hi';
+import { useHistory } from 'react-router';
 import {
   Title,
   TitleContainer,
@@ -11,6 +12,8 @@ import {
 } from './styles';
 
 const Header = () => {
+  const history = useHistory();
+
   return (
     <Container>
       <Container2>
@@ -19,11 +22,15 @@ const Header = () => {
           <Marker />
         </TitleContainer>
         <ButtonsContainer>
-          <Button>
-            <Text to="/new-bet">Account</Text>
+          <Button
+            onClick={() => {
+              history.push('/');
+            }}>
+            <Text>Account</Text>
           </Button>
-          <Button>
-            <Text to="/login">Log out</Text>
+          <Button onClick={() => history.push('/login')}>
+            <Text>Log out</Text>
+            <HiOutlineArrowRight size={24} color="#707070" />
           </Button>
         </ButtonsContainer>
       </Container2>

@@ -9,6 +9,7 @@ export const Button = styled.button`
   padding: 0.9rem 2.9rem;
   width: fit-content;
   background: #ffffff;
+  margin-right: 2.2rem;
 
   &.active {
     background: ${({ color }) => color};

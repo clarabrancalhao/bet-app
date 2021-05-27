@@ -5,6 +5,7 @@ import Footer from '../../components/Footer';
 import { Button } from '../../components/GameButton/styles';
 import Header from '../../components/Header';
 import {
+  addGameToCart,
   addNumber,
   clearGame,
   completeGame,
@@ -32,6 +33,7 @@ export interface IGame {
   color: string;
   type: string;
   range: number;
+  price: number;
   description: string;
   'max-number': number;
 }
@@ -97,7 +99,24 @@ const NewGame: React.FC = () => {
     dispatch(completeGame(randomNumbers));
   };
 
-  const handleAddToCart = () => {};
+  const handleClearGame = () => {
+    dispatch(clearGame());
+  };
+
+  const handleAddToCart = () => {
+    if (selectedNumbers.length === selectedGame['max-number']) {
+      dispatch(
+        addGameToCart({
+          id: Date.now(),
+          type: selectedGame.type,
+          price: selectedGame.price,
+          selectedNumbers: selectedNumbers,
+          color: selectedGame.color,
+        })
+      );
+      dispatch(clearGame());
+    }
+  };
 
   const numbers = useMemo(
     () => Array.from({ length: selectedGame?.range }, (_, i) => i + 1),
@@ -156,7 +175,7 @@ const NewGame: React.FC = () => {
             <GameButtons onClick={handleCompleteGame}>
               Complete Game
             </GameButtons>
-            <GameButtons>Clear Game</GameButtons>
+            <GameButtons onClick={handleClearGame}>Clear Game</GameButtons>
             <AddCartButton onClick={handleAddToCart}>Add to Cart</AddCartButton>
           </BottomButtonContainer>
         </NewBetContainer>

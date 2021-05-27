@@ -26,7 +26,8 @@ export const GameDetailContainer = styled.div`
 export const Marker = styled.div`
   height: 8.6rem;
   width: 0.4rem;
-  border-radius: 50% 0 0 50%;
+  border-radius: 1rem 0 0 1rem;
+  background: ${({ color }) => color};
 `;
 
 export const BoldText = styled.h1`
@@ -49,4 +50,10 @@ export const LightParagraph = styled.p`
   font-weight: 400;
   font-size: 1.6rem;
   font-style: normal;
+`;
+
+export const DeleteButton = styled.button`
+  background: transparent;
+  border: none;
+  width: 3.2rem;
 `;

@@ -7,9 +7,16 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
+  white-space: pre;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   align-items: center;
+`;
+
+export const Container3 = styled.div`
+  display: flex;
 `;
 
 export const Title = styled.h1`
@@ -25,4 +32,15 @@ export const Text1 = styled.p`
   width: fit-content;
   color: #868686;
   margin-right: 1.5rem;
+`;
+
+export const NewGameButton = styled.button`
+  background: transparent;
+  border: none;
+  color: #b5c401;
+  font-size: 2.4rem;
+  display: flex;
+  white-space: pre;
+  width: fit-content;
+  align-items: center;
 `;

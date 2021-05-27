@@ -28,6 +28,7 @@ export const SelectButtonsContainer = styled.div`
 `;
 
 export const NumbersContainer = styled.div`
+  margin-top: 1.8rem;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
 `;
@@ -40,7 +41,8 @@ export const NewBetContainer = styled.div`
 
 export const BottomButtonContainer = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  margin-top: 4.4rem;
 `;
 
 export const NumberCell = styled.button`
@@ -55,6 +57,7 @@ export const NumberCell = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
+  margin: 0 1.2rem 1.2rem 0;
 
   &.active {
     background: ${({ color }) => color};

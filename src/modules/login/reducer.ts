@@ -1,10 +1,4 @@
-import {
-  EMAIL_OK,
-  PASSWORD_OK,
-  SET_EMAIL_ERROR,
-  SET_PASSWORD_ERROR,
-  USER_LOGIN,
-} from './actions';
+import { SET_EMAIL_ERROR, SET_PASSWORD_ERROR, USER_LOGIN } from './actions';
 
 interface IState {
   isLogged: boolean;
@@ -36,14 +30,6 @@ function login(state: IState = initialState, action: IAction) {
         passwordError: action.payload,
       };
 
-    case EMAIL_OK:
-      return { ...state, emailOk: action.payload };
-
-    case PASSWORD_OK:
-      return {
-        ...state,
-        passwordOk: action.payload,
-      };
     case USER_LOGIN:
       return {
         ...state,

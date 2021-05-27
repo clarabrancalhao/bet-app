@@ -18,13 +18,3 @@ export const userLogin = (isLogged: boolean) => ({
   type: USER_LOGIN,
   payload: isLogged,
 });
-
-export const emailOk = (isOk: boolean) => ({
-  type: EMAIL_OK,
-  payload: isOk,
-});
-
-export const passwordOk = (isOk: boolean) => ({
-  type: PASSWORD_OK,
-  payload: isOk,
-});

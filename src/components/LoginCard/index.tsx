@@ -3,9 +3,7 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import {
   emailError,
-  emailOk,
   passwordError,
-  passwordOk,
   userLogin,
 } from '../../modules/login/actions';
 import {
@@ -45,11 +43,9 @@ const LoginCard = () => {
 
     if (!isOk) {
       dispatch(emailError(true));
-      dispatch(emailOk(false));
     }
     if (isOk) {
       dispatch(emailError(false));
-      dispatch(emailOk(true));
     }
   };
 
@@ -58,16 +54,17 @@ const LoginCard = () => {
 
     if (!isOk) {
       dispatch(passwordError(true));
-      dispatch(passwordOk(false));
     }
     if (isOk) {
       dispatch(passwordError(false));
-      dispatch(passwordOk(true));
     }
   };
 
   const handleLogin = () => {
-    if (login.passwordOk && login.emailOk) {
+    handleEmailValidation();
+    handlePasswordValidation();
+
+    if (!login.emailError && !login.passwordError) {
       dispatch(userLogin(true));
       history.push('/');
     }
