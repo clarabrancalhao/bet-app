@@ -1,19 +1,10 @@
+import { IGame } from '../../utils/interfaces';
 import {
   GET_GAMES_FULFILLED,
   GET_GAMES_PENDING,
   GET_GAMES_REJECT,
   SELECT_GAME,
 } from './actions';
-
-interface IGame {
-  type: string;
-  description: string;
-  range: number;
-  price: number;
-  'max-number': number;
-  color: string;
-  'min-cart-value': number;
-}
 
 /* interface IPayload {
   games: IGame[];

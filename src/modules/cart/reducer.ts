@@ -1,4 +1,4 @@
-import games from '../games/reducer';
+import { ICartGame } from '../../utils/interfaces';
 import {
   ADD_TO_CART,
   REMOVE_NUMBER,
@@ -8,21 +8,14 @@ import {
   REMOVE_FROM_CART,
 } from './actions';
 
-interface IGame {
-  id: number;
-  name: string;
-  numbers: string[];
-  price: number;
-}
-
 interface IInitialState {
-  games: IGame[];
+  games: ICartGame[];
   numbers: number[];
 }
 
 interface IAction {
   type: string;
-  payload: IGame | number;
+  payload: any;
 }
 
 const initialState = {

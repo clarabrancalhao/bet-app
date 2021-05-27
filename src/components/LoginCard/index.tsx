@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { ILogin } from '../../utils/interfaces';
 import {
   emailError,
   passwordError,
@@ -15,14 +16,6 @@ import {
   Input,
   Text,
 } from './styles';
-
-interface ILogin {
-  isLogged: boolean;
-  emailError: boolean;
-  passwordError: boolean;
-  emailOk: boolean;
-  passwordOk: boolean;
-}
 
 const LoginCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);

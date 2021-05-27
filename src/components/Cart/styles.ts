@@ -3,31 +3,19 @@ import styled from 'styled-components';
 export const Card = styled.div`
   margin-top: 2.6rem;
   width: 31.7rem;
+  height: 44.4.rem;
   border-radius: 1.4rem;
   background: #ffffff;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   box-shadow: 0px 3px 25px #00000014;
 `;
 
-export const GameCard = styled.div`
-  display: flex;
-`;
-
-export const GameInfosContainer = styled.div`
+export const Content = styled.div`
+  margin: 3.2rem 1.6rem 4.7rem 1.8rem;
   display: flex;
   flex-direction: column;
-`;
-
-export const GameDetailContainer = styled.div`
-  display: flex;
-`;
-
-export const Marker = styled.div`
-  height: 8.6rem;
-  width: 0.4rem;
-  border-radius: 1rem 0 0 1rem;
-  background: ${({ color }) => color};
 `;
 
 export const BoldText = styled.h1`
@@ -35,25 +23,14 @@ export const BoldText = styled.h1`
   color: #707070;
 `;
 
-export const NumbersText = styled.p`
-  font-size: 1.5rem;
-  color: #868686;
-`;
-
-export const GameTitle = styled.p`
-  color: ${({ color }) => color};
-  font-size: 1.6rem;
-`;
-
-export const LightParagraph = styled.p`
-  color: #868686;
-  font-weight: 400;
-  font-size: 1.6rem;
-  font-style: normal;
-`;
-
-export const DeleteButton = styled.button`
-  background: transparent;
-  border: none;
-  width: 3.2rem;
+export const SaveButton = styled.button`
+  width: 100%;
+  background: #f4f4f4;
+  border: 1px solid #e2e2e2;
+  color: #27c383;
+  font-size: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2.7rem;
 `;

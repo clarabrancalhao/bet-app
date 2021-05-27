@@ -1,19 +1,10 @@
 import axios from 'axios';
+import { IGame } from '../../utils/interfaces';
 
 export const GET_GAMES_PENDING = 'GET_GAMES_PENDING';
 export const GET_GAMES_REJECT = 'GET_GAMES_REJECT';
 export const GET_GAMES_FULFILLED = 'GET_GAMES_FULFILLED';
 export const SELECT_GAME = 'SELECT_GAME';
-
-interface IGame {
-  type: string;
-  description: string;
-  range: number;
-  price: number;
-  'max-number': number;
-  color: string;
-  'min-cart-value': number;
-}
 
 export const getGames = () => {
   return (dispatch: any) => {

@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  margin-top: 3rem;
 `;
 
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 `;
 
 export const Marker = styled.div`
@@ -14,6 +16,7 @@ export const Marker = styled.div`
   width: 0.6rem;
   background: ${({ color }) => color};
   border-radius: 10rem;
+  margin-right: 1.5rem;
 `;
 
 export const Numbers = styled.h2`

@@ -8,14 +8,29 @@ import {
   Numbers,
 } from './styles';
 
-const RecentGameCard = () => {
+interface IProps {
+  date: number;
+  color: string;
+  type: string;
+  price: number;
+  numbers: number[];
+}
+
+const RecentGameCard: React.FC<IProps> = (props) => {
   return (
     <Container>
-      <Marker color="#7F3992" />
+      <Marker color={props.color} />
       <ContentContainer>
-        <Numbers>1,2,3,4,5,6,7,8,9</Numbers>
-        <Infos>Testeee</Infos>
-        <Game color="#7F3992">TesteFacil</Game>
+        <Numbers>{props.numbers.join(', ')}</Numbers>
+        <Infos>
+          {new Date(props.date).toLocaleDateString()} - (
+          {props.price.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          })}
+          )
+        </Infos>
+        <Game color={props.color}>{props.type}</Game>
       </ContentContainer>
     </Container>
   );

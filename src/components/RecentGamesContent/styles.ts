@@ -32,6 +32,7 @@ export const Text1 = styled.p`
   width: fit-content;
   color: #868686;
   margin-right: 1.5rem;
+  align-self: center;
 `;
 
 export const NewGameButton = styled.button`
