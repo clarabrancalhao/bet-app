@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ICartGame } from '../../utils/interfaces';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
@@ -6,6 +7,13 @@ export const ADD_NUMBER = 'ADD_NUMBER';
 export const REMOVE_NUMBER = 'REMOVE_NUMBER';
 export const COMPLETE_GAME = 'COMPLETE_GAME';
 export const CLEAR_GAME = 'CLEAR_GAME';
+export const TOTAL_AMOUNT = 'TOTAL_AMOUNT';
+export const SAVE_CART_COMPLETED = 'SAVE_CART_COMPLETED';
+export const SAVE_CART_REJECTED = 'SAVE_CART_REJECTED';
+export const SAVE_CART_PENDING = 'SAVE_CART_PENDING';
+export const GET_GAMES_PENDING = 'GET_GAMES_PENDING';
+export const GET_GAMES_COMPLETED = 'GET_GAMES_COMPLETED';
+export const GET_GAMES_REJECTED = 'GET_GAMES_REJECTED';
 
 export const completeGame = (numbers: number[]) => ({
   type: COMPLETE_GAME,
@@ -27,11 +35,67 @@ export const addGameToCart = (game: ICartGame) => ({
   payload: game,
 });
 
-export const removeFromCart = (gameId: number) => ({
+export const removeFromCart = (game: any) => ({
   type: REMOVE_FROM_CART,
-  payload: gameId,
+  payload: game,
 });
 
 export const clearGame = () => ({
   type: CLEAR_GAME,
+});
+
+export const getTotalAmount = (value: number) => ({
+  type: TOTAL_AMOUNT,
+  payload: value,
+});
+
+export const saveCart = (games: ICartGame[]) => {
+  return (dispatch: any) => {
+    dispatch(saveCartPending());
+    axios
+      .post(
+        'https://bet-app-52a85-default-rtdb.firebaseio.com/games.json',
+        games,
+        { headers: { 'Content-Type': 'application/json' } }
+      )
+      .then(() => dispatch(saveCartCompleted()))
+      .catch((error) => dispatch(saveCartReject(error.message)));
+  };
+};
+
+export const getCompletedGames = () => {
+  return (dispatch: any) => {
+    dispatch(getGamesPending());
+    axios
+      .get('https://bet-app-52a85-default-rtdb.firebaseio.com/games.json')
+      .then((response) => dispatch(getGamesCompleted(response.data)))
+      .catch((error) => dispatch(getGamesReject(error)));
+  };
+};
+
+const saveCartPending = () => ({
+  type: SAVE_CART_PENDING,
+});
+
+const saveCartCompleted = () => ({
+  type: SAVE_CART_COMPLETED,
+});
+
+const saveCartReject = (error: string) => ({
+  type: SAVE_CART_REJECTED,
+  payload: error,
+});
+
+const getGamesPending = () => ({
+  type: GET_GAMES_PENDING,
+});
+
+const getGamesCompleted = (games: any) => ({
+  type: GET_GAMES_COMPLETED,
+  payload: games,
+});
+
+const getGamesReject = (error: string) => ({
+  type: GET_GAMES_REJECTED,
+  payload: error,
 });

@@ -18,9 +18,20 @@ export const Content = styled.div`
   flex-direction: column;
 `;
 
+export const TotalContainer = styled.div`
+  display: flex;
+`;
+
 export const BoldText = styled.h1`
   font-size: 2.4rem;
   color: #707070;
+`;
+
+export const LightText = styled.h1`
+  font-size: 2.4rem;
+  color: #707070;
+  font-weight: 300;
+  font-style: normal;
 `;
 
 export const SaveButton = styled.button`

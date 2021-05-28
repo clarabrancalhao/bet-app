@@ -45,7 +45,7 @@ const NumbersContainer = () => {
           value={number}
           color={selectedGame.color}
           className={
-            !selectedNumbers.find((selected: number) => selected === number)
+            !selectedNumbers?.find((selected: number) => selected === number)
               ? ''
               : 'active'
           }

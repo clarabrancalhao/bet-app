@@ -1,4 +1,3 @@
-import React from 'react';
 import RecentGameCard from '../RecentGameCard';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import {
@@ -9,31 +8,33 @@ import {
   Text1,
   Title,
 } from './styles';
-import { Button } from '../GameButton/styles';
-import { RootStateOrAny, useSelector } from 'react-redux';
+
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { ICartGame } from '../../utils/interfaces';
+import SelectGameCard from '../SelectGameCard';
+import { useEffect } from 'react';
+import { getCompletedGames } from '../../modules/cart/actions';
 
 const RecentGamesContent = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
-  const games = useSelector((state: RootStateOrAny) => state.games.results);
   const boughtGames: ICartGame[] = useSelector(
-    (state: RootStateOrAny) => state.cart.games
+    (state: RootStateOrAny) => state.cart.completedGames
   );
 
+  useEffect(() => {
+    dispatch(getCompletedGames());
+  }, [dispatch]);
+
+  console.log(boughtGames);
   return (
     <Container>
       <Header>
         <Container3>
           <Title>RECENT GAMES</Title>
           <Text1>Filters</Text1>
-          {games.map((game: ICartGame) => {
-            return (
-              <Button key={game.type} color={game.color}>
-                {game.type}
-              </Button>
-            );
-          })}
+          <SelectGameCard />
         </Container3>
         <NewGameButton
           onClick={() => {

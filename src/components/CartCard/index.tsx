@@ -27,7 +27,7 @@ const CartCard: FC<IProps> = (props) => {
 
   return (
     <GameCard key={props.id}>
-      <DeleteButton onClick={() => dispatch(removeFromCart(props.id))}>
+      <DeleteButton onClick={() => dispatch(removeFromCart(props))}>
         <IoTrashOutline size={24} color="#888888" />
       </DeleteButton>
       <Marker color={props.color} />

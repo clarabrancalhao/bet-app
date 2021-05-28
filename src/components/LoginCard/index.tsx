@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { ILogin } from '../../utils/interfaces';
 import {
   emailError,
+  forgetPasswordPage,
   passwordError,
   userLogin,
 } from '../../modules/login/actions';
@@ -12,7 +13,7 @@ import {
   Card,
   Container,
   ErrorText,
-  ForgetPasswordText,
+  ForgetPasswordButton,
   Input,
   Text,
 } from './styles';
@@ -24,6 +25,9 @@ const LoginCard = () => {
   const history = useHistory();
 
   const login: ILogin = useSelector((state: RootStateOrAny) => state.login);
+  const loginPage = useSelector(
+    (state: RootStateOrAny) => state.login.loginPage
+  );
 
   const emailRegex =
     /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
@@ -63,6 +67,22 @@ const LoginCard = () => {
     }
   };
 
+  const handleForgetPasswordPage = () => {
+    dispatch(forgetPasswordPage());
+  };
+
+  let greenLinkText;
+
+  if (loginPage === 'forgetPassword') {
+    greenLinkText = 'Send Link';
+  }
+  if (loginPage === 'login') {
+    greenLinkText = 'Log In';
+  }
+  if (loginPage === 'register') {
+    greenLinkText = 'Register';
+  }
+
   return (
     <Card>
       <Container>
@@ -70,18 +90,24 @@ const LoginCard = () => {
         <Input ref={emailRef} onChange={handleEmailValidation} />
       </Container>
       {login.emailError && <ErrorText>Please enter a valid email.</ErrorText>}
-      <Container>
-        <Text>Password</Text>
-        <Input ref={passwordRef} onChange={handlePasswordValidation} />
-      </Container>
+      {loginPage !== 'forgetPassword' && (
+        <Container>
+          <Text>Password</Text>
+          <Input ref={passwordRef} onChange={handlePasswordValidation} />
+        </Container>
+      )}
       {login.passwordError && (
         <ErrorText>
           Your password must have at least 8 caracters, 1 uppercase letter and 1
           number
         </ErrorText>
       )}
-      <ForgetPasswordText>I forget my password</ForgetPasswordText>
-      <Button onClick={handleLogin}>Login</Button>
+      {loginPage === 'login' && (
+        <ForgetPasswordButton onClick={handleForgetPasswordPage}>
+          I forget my password
+        </ForgetPasswordButton>
+      )}
+      <Button onClick={handleLogin}>{greenLinkText}</Button>
     </Card>
   );
 };

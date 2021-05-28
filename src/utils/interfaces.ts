@@ -5,6 +5,7 @@ export interface IGame {
   price: number;
   description: string;
   'max-number': number;
+  'min-cart-value': number;
 }
 
 export interface ICartGame {
@@ -13,6 +14,7 @@ export interface ICartGame {
   color: string;
   type: string;
   selectedNumbers: number[];
+  'min-cart-value': number;
 }
 
 export interface ILogin {

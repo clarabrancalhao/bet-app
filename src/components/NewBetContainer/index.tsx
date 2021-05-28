@@ -19,6 +19,8 @@ import {
 import getRandomNumbers from '../../utils/getRandomNumbers';
 import NumbersContainer from '../NumbersContainer';
 import SelectGameCard from '../SelectGameCard';
+import { selectGame } from '../../modules/games/actions';
+import { useCallback, useEffect } from 'react';
 
 const NewBet = () => {
   const dispatch = useDispatch();
@@ -41,9 +43,9 @@ const NewBet = () => {
     dispatch(completeGame(randomNumbers));
   };
 
-  const handleClearGame = () => {
+  const handleClearGame = useCallback(() => {
     dispatch(clearGame());
-  };
+  }, [dispatch]);
 
   const handleAddToCart = () => {
     if (selectedNumbers.length === selectedGame['max-number']) {
@@ -54,11 +56,16 @@ const NewBet = () => {
           price: selectedGame.price,
           selectedNumbers: selectedNumbers,
           color: selectedGame.color,
+          'min-cart-value': selectedGame['min-cart-value'],
         })
       );
       dispatch(clearGame());
     }
   };
+
+  useEffect(() => {
+    return handleClearGame();
+  }, [handleClearGame]);
 
   if (!selectedGame) {
     return null;
