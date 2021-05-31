@@ -2,10 +2,10 @@ import { FC } from 'react';
 import { IoTrashOutline } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../../modules/cart/actions';
+import { Button, BUTTON_THEME } from '../Button/styles';
 
 import {
   GameCard,
-  DeleteButton,
   GameDetailContainer,
   Marker,
   GameInfosContainer,
@@ -27,9 +27,15 @@ const CartCard: FC<IProps> = (props) => {
 
   return (
     <GameCard key={props.id}>
-      <DeleteButton onClick={() => dispatch(removeFromCart(props))}>
-        <IoTrashOutline size={24} color="#888888" />
-      </DeleteButton>
+      <Button
+        className={BUTTON_THEME.GHOST}
+        onClick={() => dispatch(removeFromCart(props))}>
+        <IoTrashOutline
+          size={24}
+          color="#888888"
+          style={{ marginRight: '6px' }}
+        />
+      </Button>
       <Marker color={props.color} />
       <GameInfosContainer>
         <NumbersText>{props.selectedNumbers.join(', ')}</NumbersText>

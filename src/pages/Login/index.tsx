@@ -1,5 +1,6 @@
 import React from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { Button, BUTTON_THEME } from '../../components/Button/styles';
 import Footer from '../../components/Footer';
 import LoginCard from '../../components/LoginCard';
 import Title from '../../components/Title';
@@ -8,7 +9,7 @@ import {
   Container,
   Container1,
   LoginContainer,
-  SignUpButton,
+  SignUpText,
   TitleText,
 } from './styles';
 
@@ -53,9 +54,11 @@ const Login = () => {
         <LoginContainer>
           <TitleText>{cardTitle}</TitleText>
           <LoginCard />
-          <SignUpButton onClick={buttonFunction}>
-            {loginPage === 'login' ? 'Sign Up' : 'Back'}
-          </SignUpButton>
+          <Button className={BUTTON_THEME.GHOST} onClick={buttonFunction}>
+            <SignUpText>
+              {loginPage === 'login' ? 'Sign Up' : 'Back'}
+            </SignUpText>
+          </Button>
         </LoginContainer>
       </Container1>
       <Footer />

@@ -4,6 +4,7 @@ import {
   GET_GAMES_PENDING,
   GET_GAMES_REJECT,
   SELECT_GAME,
+  SELECT_FILTER,
 } from './actions';
 
 /* interface IPayload {
@@ -17,6 +18,7 @@ interface IInitialState {
   loading: boolean;
   error: string | null;
   selected: IGame | null;
+  selectedFilter: IGame | null;
 }
 
 /* interface IAction {
@@ -29,6 +31,7 @@ const initialState = {
   loading: false,
   error: null,
   selected: null,
+  selectedFilter: null,
 };
 
 function games(state: IInitialState = initialState, action: any) {
@@ -58,6 +61,12 @@ function games(state: IInitialState = initialState, action: any) {
       return {
         ...state,
         selected: action.payload,
+      };
+
+    case SELECT_FILTER:
+      return {
+        ...state,
+        selectedFilter: action.payload,
       };
 
     default:

@@ -5,8 +5,6 @@ import {
   BottomButtonContainer,
   BoldParagraph,
   BoldTitle,
-  GameButtons,
-  AddCartButton,
   LightTitle,
   RegularParagraph,
 } from './styles';
@@ -19,8 +17,8 @@ import {
 import getRandomNumbers from '../../utils/getRandomNumbers';
 import NumbersContainer from '../NumbersContainer';
 import SelectGameCard from '../SelectGameCard';
-import { selectGame } from '../../modules/games/actions';
 import { useCallback, useEffect } from 'react';
+import { Button, BUTTON_THEME } from '../Button/styles';
 
 const NewBet = () => {
   const dispatch = useDispatch();
@@ -82,9 +80,17 @@ const NewBet = () => {
       <RegularParagraph>{selectedGame['description']}</RegularParagraph>
       <NumbersContainer />
       <BottomButtonContainer>
-        <GameButtons onClick={handleCompleteGame}>Complete Game</GameButtons>
-        <GameButtons onClick={handleClearGame}>Clear Game</GameButtons>
-        <AddCartButton onClick={handleAddToCart}>Add to Cart</AddCartButton>
+        <Button
+          className={BUTTON_THEME.GREEN_BORDER}
+          onClick={handleCompleteGame}>
+          Complete Game
+        </Button>
+        <Button className={BUTTON_THEME.GREEN_BORDER} onClick={handleClearGame}>
+          Clear Game
+        </Button>
+        <Button className={BUTTON_THEME.ADD_TO_CART} onClick={handleAddToCart}>
+          Add to Cart
+        </Button>
       </BottomButtonContainer>
     </NewBetContainer>
   );

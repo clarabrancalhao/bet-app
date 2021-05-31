@@ -16,6 +16,7 @@ export const Header = styled.div`
 `;
 
 export const Container3 = styled.div`
+  align-items: center;
   display: flex;
 `;
 
@@ -35,9 +36,7 @@ export const Text1 = styled.p`
   align-self: center;
 `;
 
-export const NewGameButton = styled.button`
-  background: transparent;
-  border: none;
+export const NewGameText = styled.h1`
   color: #b5c401;
   font-size: 2.4rem;
   display: flex;

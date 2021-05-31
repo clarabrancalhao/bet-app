@@ -30,15 +30,13 @@ export const Input = styled.input`
   border: 0;
 `;
 
-export const ForgetPasswordButton = styled.button`
+export const ForgetPasswordText = styled.p`
   padding-top: 2.6rem;
   padding-right: 2rem;
   text-align: right;
   color: #c1c1c1;
   font-weight: 400;
   font-size: 1.7rem;
-  border: none;
-  background: transparent;
 `;
 
 export const ErrorText = styled.p`
@@ -48,11 +46,9 @@ export const ErrorText = styled.p`
   font-weight: 600;
 `;
 
-export const Button = styled.button`
+export const SubmitText = styled.h1`
   margin: 4.4rem 0;
   width: 100%;
-  background: transparent;
-  border: none;
   font-size: 3.5rem;
   color: #b5c401;
 `;

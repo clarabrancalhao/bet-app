@@ -1,29 +1,28 @@
 import React from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { clearGame } from '../../modules/cart/actions';
-import { selectGame } from '../../modules/games/actions';
+import { selectFilter } from '../../modules/games/actions';
 import { IGame } from '../../utils/interfaces';
 import { Button, BUTTON_THEME } from '../Button/styles';
-
 import { Container } from './styles';
 
-const SelectGameCard = () => {
+const FilterGames = () => {
   const dispatch = useDispatch();
   const games: IGame[] = useSelector(
     (state: RootStateOrAny) => state.games.results
   );
 
-  const selectedGame: IGame = useSelector(
-    (state: RootStateOrAny) => state.games.selected
+  const selectedFilter: IGame = useSelector(
+    (state: RootStateOrAny) => state.games.selectedFilter
   );
 
-  const handleSelectGame = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSelectFilter = (event: React.MouseEvent<HTMLButtonElement>) => {
     const selected: IGame | undefined = games.find(
       (game) => game.type === event.currentTarget.name
     );
-    if (selectedGame.type !== selected?.type) {
-      dispatch(clearGame());
-      dispatch(selectGame(selected));
+    if (selectedFilter?.type !== selected?.type) {
+      dispatch(selectFilter(selected));
+    } else {
+      dispatch(selectFilter(null));
     }
   };
 
@@ -35,12 +34,12 @@ const SelectGameCard = () => {
             key={game.type}
             name={game.type}
             className={
-              selectedGame?.type === game.type
+              selectedFilter?.type === game.type
                 ? BUTTON_THEME.GAMES_ACTIVE
                 : BUTTON_THEME.GAMES
             }
             color={game.color}
-            onClick={handleSelectGame}>
+            onClick={handleSelectFilter}>
             {game.type}
           </Button>
         );
@@ -49,4 +48,4 @@ const SelectGameCard = () => {
   );
 };
 
-export default SelectGameCard;
+export default FilterGames;

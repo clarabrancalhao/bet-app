@@ -2,8 +2,9 @@ import React, { useMemo } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { addNumber, removeNumber } from '../../modules/cart/actions';
 import { IGame } from '../../utils/interfaces';
+import { Button, BUTTON_THEME } from '../Button/styles';
 
-import { Container, NumberCell } from './styles';
+import { Container } from './styles';
 
 const NumbersContainer = () => {
   const dispatch = useDispatch();
@@ -40,18 +41,18 @@ const NumbersContainer = () => {
   return (
     <Container>
       {numbers.map((number) => (
-        <NumberCell
+        <Button
           key={number}
           value={number}
           color={selectedGame.color}
           className={
             !selectedNumbers?.find((selected: number) => selected === number)
-              ? ''
-              : 'active'
+              ? BUTTON_THEME.NUMBER_CELL
+              : BUTTON_THEME.NUMBER_CELL_ACTIVE
           }
           onClick={handleSelectNumber}>
           {number < 10 ? '0' + number : number}
-        </NumberCell>
+        </Button>
       ))}
     </Container>
   );

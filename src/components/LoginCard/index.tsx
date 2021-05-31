@@ -9,14 +9,15 @@ import {
   userLogin,
 } from '../../modules/login/actions';
 import {
-  Button,
   Card,
   Container,
   ErrorText,
-  ForgetPasswordButton,
+  ForgetPasswordText,
   Input,
+  SubmitText,
   Text,
 } from './styles';
+import { Button, BUTTON_THEME } from '../Button/styles';
 
 const LoginCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -103,11 +104,15 @@ const LoginCard = () => {
         </ErrorText>
       )}
       {loginPage === 'login' && (
-        <ForgetPasswordButton onClick={handleForgetPasswordPage}>
-          I forget my password
-        </ForgetPasswordButton>
+        <Button
+          className={BUTTON_THEME.GHOST}
+          onClick={handleForgetPasswordPage}>
+          <ForgetPasswordText>I forget my password</ForgetPasswordText>
+        </Button>
       )}
-      <Button onClick={handleLogin}>{greenLinkText}</Button>
+      <Button className={BUTTON_THEME.GHOST} onClick={handleLogin}>
+        <SubmitText>{greenLinkText}</SubmitText>
+      </Button>
     </Card>
   );
 };

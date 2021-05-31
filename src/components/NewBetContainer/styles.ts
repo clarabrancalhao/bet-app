@@ -5,22 +5,6 @@ export const NewBetContainer = styled.div`
   flex-direction: column;
   width: 60%;
 `;
-export const GameButtons = styled.button`
-  border: 1px solid #27c383;
-  border-radius: 1rem;
-  padding: 1.7rem 2.2rem;
-  color: #27c383;
-  font-size: 1.6rem;
-`;
-
-export const AddCartButton = styled.button`
-  background: #27c383;
-  border: none;
-  border-radius: 1rem;
-  color: #ffffff;
-  font-size: 1.6rem;
-  padding: 1.7rem 2.2rem;
-`;
 
 export const BoldTitle = styled.h1`
   font-size: 2.4rem;

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
-  margin-top: 2.6rem;
   width: 31.7rem;
-  height: 44.4.rem;
+  height: 44.4rem;
   border-radius: 1.4rem;
   background: #ffffff;
   display: flex;
@@ -15,7 +14,15 @@ export const Card = styled.div`
 export const Content = styled.div`
   margin: 3.2rem 1.6rem 4.7rem 1.8rem;
   display: flex;
+  height: 100%;
   flex-direction: column;
+  justify-content: space-space-between;
+`;
+
+export const GamesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 `;
 
 export const TotalContainer = styled.div`
@@ -25,23 +32,14 @@ export const TotalContainer = styled.div`
 export const BoldText = styled.h1`
   font-size: 2.4rem;
   color: #707070;
+  width: auto;
 `;
 
 export const LightText = styled.h1`
+  margin-left: 0.6rem;
   font-size: 2.4rem;
   color: #707070;
   font-weight: 300;
   font-style: normal;
-`;
-
-export const SaveButton = styled.button`
-  width: 100%;
-  background: #f4f4f4;
-  border: 1px solid #e2e2e2;
-  color: #27c383;
-  font-size: 3.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 2.7rem;
+  white-space: pre;
 `;

@@ -1,11 +1,11 @@
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import { useHistory } from 'react-router';
+import { Button, BUTTON_THEME } from '../Button/styles';
 import {
   Title,
   TitleContainer,
   Container,
   Text,
-  Button,
   Container2,
   Marker,
   ButtonsContainer,
@@ -23,12 +23,15 @@ const Header = () => {
         </TitleContainer>
         <ButtonsContainer>
           <Button
+            className={BUTTON_THEME.GHOST}
             onClick={() => {
               history.push('/');
             }}>
             <Text>Account</Text>
           </Button>
-          <Button onClick={() => history.push('/login')}>
+          <Button
+            className={BUTTON_THEME.GHOST}
+            onClick={() => history.push('/login')}>
             <Text>Log out</Text>
             <HiOutlineArrowRight size={24} color="#707070" />
           </Button>

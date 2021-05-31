@@ -30,10 +30,8 @@ export const TitleText = styled.h1`
   color: #707070;
 `;
 
-export const SignUpButton = styled.button`
+export const SignUpText = styled.h1`
   margin-top: 3rem;
-  background: transparent;
-  border: none;
   font-size: 3.5rem;
   color: #707070;
 `;

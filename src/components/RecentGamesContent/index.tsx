@@ -4,7 +4,7 @@ import {
   Container,
   Container3,
   Header,
-  NewGameButton,
+  NewGameText,
   Text1,
   Title,
 } from './styles';
@@ -15,6 +15,9 @@ import { ICartGame } from '../../utils/interfaces';
 import SelectGameCard from '../SelectGameCard';
 import { useEffect } from 'react';
 import { getCompletedGames } from '../../modules/cart/actions';
+import { Button, BUTTON_THEME } from '../Button/styles';
+import FilterGames from '../FilterGames';
+import { ArrowIcon } from '../Header/styles';
 
 const RecentGamesContent = () => {
   const dispatch = useDispatch();
@@ -22,28 +25,36 @@ const RecentGamesContent = () => {
   const boughtGames: ICartGame[] = useSelector(
     (state: RootStateOrAny) => state.cart.completedGames
   );
+  const selectedFilter = useSelector(
+    (state: RootStateOrAny) => state.games.selectedFilter
+  );
 
   useEffect(() => {
     dispatch(getCompletedGames());
   }, [dispatch]);
 
-  console.log(boughtGames);
+  const filteredGames = selectedFilter
+    ? boughtGames.filter((game) => game.type === selectedFilter.type)
+    : boughtGames;
+
   return (
     <Container>
       <Header>
         <Container3>
           <Title>RECENT GAMES</Title>
           <Text1>Filters</Text1>
-          <SelectGameCard />
+          <FilterGames />
         </Container3>
-        <NewGameButton
+        <Button
+          className={BUTTON_THEME.GHOST}
           onClick={() => {
             history.push('/new-bet');
           }}>
-          New Game <HiOutlineArrowRight size={48} color="#B5C401" />
-        </NewGameButton>
+          <NewGameText>New Game </NewGameText>
+          <ArrowIcon />
+        </Button>
       </Header>
-      {boughtGames.map((game) => {
+      {filteredGames.map((game) => {
         return (
           <RecentGameCard
             key={game.id}

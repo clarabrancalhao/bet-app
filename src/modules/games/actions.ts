@@ -5,6 +5,7 @@ export const GET_GAMES_PENDING = 'GET_GAMES_PENDING';
 export const GET_GAMES_REJECT = 'GET_GAMES_REJECT';
 export const GET_GAMES_FULFILLED = 'GET_GAMES_FULFILLED';
 export const SELECT_GAME = 'SELECT_GAME';
+export const SELECT_FILTER = 'SELECT_FILTER';
 
 export const getGames = () => {
   return (dispatch: any) => {
@@ -20,6 +21,15 @@ export const selectGame = (game: any) => {
   return (dispatch: any) => {
     dispatch({
       type: SELECT_GAME,
+      payload: game,
+    });
+  };
+};
+
+export const selectFilter = (game: any) => {
+  return (dispatch: any) => {
+    dispatch({
+      type: SELECT_FILTER,
       payload: game,
     });
   };

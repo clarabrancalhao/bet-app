@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { HiOutlineArrowRight } from 'react-icons/hi';
 
 export const Container = styled.header`
   width: 100%;
@@ -46,11 +47,11 @@ export const Title = styled.h1`
 export const Text = styled.p`
   font-size: 2rem;
   color: #707070;
+  width: auto;
 `;
 
-export const Button = styled.button`
-  background: transparent;
-  display: flex;
-  border: none;
-  margin: 0 3rem;
+export const ArrowIcon = styled(HiOutlineArrowRight)`
+  color: #b5c401;
+  size: 48px;
+  width: 48px;
 `;

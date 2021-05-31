@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const DeleteButton = styled.button`
-  background: transparent;
-  border: none;
-  width: 3.2rem;
-`;
-
 export const GameInfosContainer = styled.div`
   display: flex;
   margin-left: 1.2rem;
