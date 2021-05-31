@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
-import NewBet from './components/NewBetContainer';
 import { getGames } from './modules/games/actions';
 import { userLogin } from './modules/login/actions';
 import Home from './pages/Home';
@@ -19,20 +18,26 @@ const App = () => {
     dispatch(getGames());
   }, [dispatch]);
 
+  if (!isLogged) {
+    return (
+      <BrowserRouter>
+        <Redirect to="/login" />
+        <Login />
+      </BrowserRouter>
+    );
+  }
+
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/login">
-          {!isLogged && <Login />}
-          {isLogged && <Redirect to="/" />}
+          <Redirect to="/" />
         </Route>
         <Route path="/" exact>
-          {isLogged && <Home />}
-          {!isLogged && <Redirect to="/login" />}
+          <Home />
         </Route>
         <Route path="/new-bet">
-          {isLogged && <NewGame />}
-          {!isLogged && <Redirect to="/login" />}
+          <NewGame />
         </Route>
       </Switch>
     </BrowserRouter>

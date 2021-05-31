@@ -19,6 +19,7 @@ import {
 } from './styles';
 import { Button, BUTTON_THEME } from '../Button/styles';
 import useValidate from '../../hooks/useValidate';
+import { LOGIN_PAGE_LINKS } from '../../utils/constants';
 
 const LoginCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -28,7 +29,7 @@ const LoginCard = () => {
   const handleValidation = useValidate();
 
   const login: ILogin = useSelector((state: RootStateOrAny) => state.login);
-  const loginPage = useSelector(
+  const loginPage: string = useSelector(
     (state: RootStateOrAny) => state.login.loginPage
   );
 
@@ -57,14 +58,10 @@ const LoginCard = () => {
     handlePasswordValidation();
 
     if (!login.emailError && !login.passwordError) {
-      let url;
-      if (loginPage === 'register') {
-        url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
-      }
-      if (loginPage === 'login') {
-        url =
-          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
-      }
+      const url =
+        loginPage === 'register'
+          ? 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
+          : 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
       fetch(`${url}AIzaSyBDvRVhhs1CoFEH3t9yuBMshFMY5MD3yI4`, {
         method: 'POST',
         body: JSON.stringify({
@@ -96,18 +93,6 @@ const LoginCard = () => {
   const handleForgetPasswordPage = () => {
     dispatch(forgetPasswordPage());
   };
-
-  let switchComponentLink;
-
-  if (loginPage === 'forgetPassword') {
-    switchComponentLink = 'Send Link';
-  }
-  if (loginPage === 'login') {
-    switchComponentLink = 'Log In';
-  }
-  if (loginPage === 'register') {
-    switchComponentLink = 'Register';
-  }
 
   return (
     <Card>
@@ -145,7 +130,7 @@ const LoginCard = () => {
         </Button>
       )}
       <Button className={BUTTON_THEME.GHOST} onClick={handleLogin}>
-        <SubmitText>{switchComponentLink}</SubmitText>
+        <SubmitText>{LOGIN_PAGE_LINKS[loginPage]}</SubmitText>
       </Button>
     </Card>
   );
