@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { ICartGame } from '../../utils/interfaces';
+import { Dispatch } from 'react';
+import { ICartGame, IGame } from '../../utils/interfaces';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
@@ -50,7 +51,7 @@ export const getTotalAmount = (value: number) => ({
 });
 
 export const saveCart = (games: ICartGame[]) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch<any>) => {
     dispatch(saveCartPending());
     axios
       .post(
@@ -64,7 +65,7 @@ export const saveCart = (games: ICartGame[]) => {
 };
 
 export const getCompletedGames = () => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch<any>) => {
     dispatch(getGamesPending());
     axios
       .get('https://bet-app-52a85-default-rtdb.firebaseio.com/games.json')
@@ -90,7 +91,7 @@ const getGamesPending = () => ({
   type: GET_GAMES_PENDING,
 });
 
-const getGamesCompleted = (games: any) => ({
+const getGamesCompleted = (games: IGame) => ({
   type: GET_GAMES_COMPLETED,
   payload: games,
 });

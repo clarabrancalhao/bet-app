@@ -1,4 +1,5 @@
 import React from 'react';
+import { ICartGame } from '../../utils/interfaces';
 import {
   ContentWrapper,
   Game,
@@ -9,28 +10,24 @@ import {
 } from './styles';
 
 interface IProps {
-  date: number;
-  color: string;
-  type: string;
-  price: number;
-  numbers: number[];
+  game: ICartGame;
 }
 
 const RecentGameCard: React.FC<IProps> = (props) => {
   return (
     <RecentGameWrapper>
-      <Marker color={props.color} />
+      <Marker color={props.game.color} />
       <ContentWrapper>
-        <Numbers>{props.numbers.join(', ')}</Numbers>
+        <Numbers>{props.game.selectedNumbers.join(', ')}</Numbers>
         <Infos>
-          {new Date(props.date).toLocaleDateString()} - (
-          {props.price.toLocaleString('pt-BR', {
+          {new Date(props.game.id).toLocaleDateString()} - (
+          {props.game.price.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL',
           })}
           )
         </Infos>
-        <Game color={props.color}>{props.type}</Game>
+        <Game color={props.game.color}>{props.game.type}</Game>
       </ContentWrapper>
     </RecentGameWrapper>
   );

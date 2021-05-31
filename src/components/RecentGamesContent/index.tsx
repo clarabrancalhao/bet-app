@@ -54,16 +54,7 @@ const RecentGamesContent = () => {
         </Button>
       </Header>
       {filteredGames.map((game) => {
-        return (
-          <RecentGameCard
-            key={game.id}
-            date={game.id}
-            color={game.color}
-            type={game.type}
-            price={game.price}
-            numbers={game.selectedNumbers}
-          />
-        );
+        return <RecentGameCard key={game.id} game={game} />;
       })}
     </ContentWrapper>
   );

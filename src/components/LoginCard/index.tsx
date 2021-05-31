@@ -1,12 +1,10 @@
 import { useRef } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 import { ILogin } from '../../utils/interfaces';
 import {
   emailError,
   forgetPasswordPage,
   passwordError,
-  userLogin,
 } from '../../modules/login/actions';
 import {
   Card,
@@ -20,13 +18,14 @@ import {
 import { Button, BUTTON_THEME } from '../Button/styles';
 import useValidate from '../../hooks/useValidate';
 import { LOGIN_PAGE_LINKS } from '../../utils/constants';
+import useAuthenticate from '../../hooks/useAuthenticate';
 
 const LoginCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
-  const history = useHistory();
   const handleValidation = useValidate();
+  const handleAuthentication = useAuthenticate();
 
   const login: ILogin = useSelector((state: RootStateOrAny) => state.login);
   const loginPage: string = useSelector(
@@ -58,35 +57,10 @@ const LoginCard = () => {
     handlePasswordValidation();
 
     if (!login.emailError && !login.passwordError) {
-      const url =
-        loginPage === 'register'
-          ? 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
-          : 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
-      fetch(`${url}AIzaSyBDvRVhhs1CoFEH3t9yuBMshFMY5MD3yI4`, {
-        method: 'POST',
-        body: JSON.stringify({
-          email: emailRef.current?.value,
-          password: passwordRef.current?.value,
-          returnSecureToken: true,
-        }),
-        headers: {
-          'Content-type': 'application/json',
-        },
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          } else {
-            res.json().then((data) => {
-              console.log(data);
-            });
-          }
-        })
-        .then((data) => {
-          localStorage.setItem('token', data['idToken']);
-          dispatch(userLogin(true));
-          history.push('/');
-        });
+      const emailValue = emailRef.current!.value;
+      const passwordValue = passwordRef.current!.value;
+
+      handleAuthentication(emailValue, passwordValue);
     }
   };
 

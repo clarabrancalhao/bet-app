@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Dispatch } from 'react';
 import { IGame } from '../../utils/interfaces';
 
 export const GET_GAMES_PENDING = 'GET_GAMES_PENDING';
@@ -8,7 +9,7 @@ export const SELECT_GAME = 'SELECT_GAME';
 export const SELECT_FILTER = 'SELECT_FILTER';
 
 export const getGames = () => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch<any>) => {
     dispatch(getGamesPending());
     axios
       .get('data.json')
@@ -18,7 +19,7 @@ export const getGames = () => {
 };
 
 export const selectGame = (game: any) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch<any>) => {
     dispatch({
       type: SELECT_GAME,
       payload: game,
@@ -26,8 +27,8 @@ export const selectGame = (game: any) => {
   };
 };
 
-export const selectFilter = (game: any) => {
-  return (dispatch: any) => {
+export const selectFilter = (game: IGame | null | undefined) => {
+  return (dispatch: Dispatch<any>) => {
     dispatch({
       type: SELECT_FILTER,
       payload: game,
