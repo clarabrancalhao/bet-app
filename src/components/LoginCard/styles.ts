@@ -44,6 +44,8 @@ export const ErrorText = styled.p`
   color: red;
   font-size: 1.4rem;
   font-weight: 600;
+  margin-left: 2.4rem;
+  font-style: normal;
 `;
 
 export const SubmitText = styled.h1`

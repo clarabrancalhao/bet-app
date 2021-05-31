@@ -1,26 +1,32 @@
 import { useDispatch } from 'react-redux';
 
-interface IProps {
-  ref: React.RefObject<HTMLInputElement>;
-  regex: RegExp;
-  action: (param: boolean) => void;
-}
-
-export const useValidate: () => void = () => {
+export const useValidate = () => {
   const dispatch = useDispatch();
 
-  const handleValidation = (props: IProps) => {
-    const isOk = props?.regex.test(props.ref.current!.value);
-
-    console.log(isOk);
-
+  const handleValidation = (
+    ref: React.RefObject<HTMLInputElement>,
+    type: string,
+    action: (param: boolean) => void
+  ) => {
+    let isOk;
+    const emailRegex =
+      /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+    if (type === 'email') {
+      isOk = emailRegex.test(ref.current!.value.toLowerCase());
+    }
+    if (type === 'password') {
+      isOk = passwordRegex.test(ref.current!.value);
+    }
     if (!isOk) {
-      dispatch(props?.action(true));
+      dispatch(action(true));
     }
     if (isOk) {
-      dispatch(props?.action(false));
+      dispatch(action(false));
     }
   };
 
-  return [handleValidation];
+  return handleValidation;
 };
+
+export default useValidate;

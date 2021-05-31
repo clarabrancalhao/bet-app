@@ -1,5 +1,4 @@
 import RecentGameCard from '../RecentGameCard';
-import { HiOutlineArrowRight } from 'react-icons/hi';
 import {
   ArrowIcon,
   Container,
@@ -16,7 +15,7 @@ import { ICartGame } from '../../utils/interfaces';
 import { useEffect } from 'react';
 import { getCompletedGames } from '../../modules/cart/actions';
 import { Button, BUTTON_THEME } from '../Button/styles';
-import FilterGames from '../FilterGames';
+import SelectGameCard from '../SelectGameCard';
 
 const RecentGamesContent = () => {
   const dispatch = useDispatch();
@@ -42,15 +41,16 @@ const RecentGamesContent = () => {
         <Container3>
           <Title>RECENT GAMES</Title>
           <Text1>Filters</Text1>
-          <FilterGames />
+          <SelectGameCard type="filter" />
         </Container3>
         <Button
           className={BUTTON_THEME.GHOST}
           onClick={() => {
             history.push('/new-bet');
           }}>
-          <NewGameText>New Game </NewGameText>
-          <ArrowIcon />
+          <NewGameText>
+            New Game <ArrowIcon size={24} />
+          </NewGameText>
         </Button>
       </Header>
       {filteredGames.map((game) => {

@@ -9,38 +9,23 @@ import {
   RegularParagraph,
 } from './styles';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import {
-  addGameToCart,
-  clearGame,
-  completeGame,
-} from '../../modules/cart/actions';
-import getRandomNumbers from '../../utils/getRandomNumbers';
+import { addGameToCart, clearGame } from '../../modules/cart/actions';
 import NumbersContainer from '../NumbersContainer';
 import SelectGameCard from '../SelectGameCard';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useCallback, useEffect } from 'react';
 import { Button, BUTTON_THEME } from '../Button/styles';
+import useCompleteGame from '../../hooks/useCompleteGame';
 
 const NewBet = () => {
   const dispatch = useDispatch();
-
+  const handleCompleteGame = useCompleteGame();
   const selectedGame: IGame = useSelector(
     (state: RootStateOrAny) => state.games.selected
   );
-
   const selectedNumbers: number[] = useSelector(
     (state: RootStateOrAny) => state.cart.numbers
   );
-
-  const handleCompleteGame = () => {
-    if (selectedNumbers.length === selectedGame['max-number']) {
-      return window.alert('Your game is already completed.');
-    }
-
-    const randomNumbers = getRandomNumbers(selectedGame, selectedNumbers);
-
-    dispatch(completeGame(randomNumbers));
-  };
 
   const handleClearGame = useCallback(() => {
     dispatch(clearGame());
@@ -76,14 +61,14 @@ const NewBet = () => {
         <LightTitle> FOR {selectedGame.type.toUpperCase()}</LightTitle>
       </TitleContainer>
       <BoldParagraph>Choose a game</BoldParagraph>
-      <SelectGameCard />
+      <SelectGameCard type="select" />
       <BoldParagraph>Fill your bet</BoldParagraph>
       <RegularParagraph>{selectedGame['description']}</RegularParagraph>
       <NumbersContainer />
       <BottomButtonContainer>
         <Button
           className={BUTTON_THEME.GREEN_BORDER}
-          onClick={handleCompleteGame}>
+          onClick={() => handleCompleteGame(selectedNumbers, selectedGame)}>
           Complete Game
         </Button>
         <Button className={BUTTON_THEME.GREEN_BORDER} onClick={handleClearGame}>

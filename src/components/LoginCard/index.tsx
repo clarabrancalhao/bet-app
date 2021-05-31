@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { ILogin } from '../../utils/interfaces';
@@ -18,43 +18,37 @@ import {
   Text,
 } from './styles';
 import { Button, BUTTON_THEME } from '../Button/styles';
+import useValidate from '../../hooks/useValidate';
 
 const LoginCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
   const history = useHistory();
+  const handleValidation = useValidate();
 
   const login: ILogin = useSelector((state: RootStateOrAny) => state.login);
   const loginPage = useSelector(
     (state: RootStateOrAny) => state.login.loginPage
   );
 
-  const emailRegex =
-    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-
   const handleEmailValidation = () => {
-    const isOk = emailRegex.test(emailRef.current!.value.toLowerCase());
+    handleValidation(emailRef, 'email', emailError);
+  };
 
-    console.log(isOk);
-
-    if (!isOk) {
-      dispatch(emailError(true));
-    }
-    if (isOk) {
-      dispatch(emailError(false));
+  const handleEmailError = () => {
+    if (login.emailError) {
+      handleEmailValidation();
     }
   };
 
   const handlePasswordValidation = () => {
-    const isOk = passwordRegex.test(passwordRef.current!.value);
+    handleValidation(passwordRef, 'password', passwordError);
+  };
 
-    if (!isOk) {
-      dispatch(passwordError(true));
-    }
-    if (isOk) {
-      dispatch(passwordError(false));
+  const handlePasswordError = () => {
+    if (login.passwordError) {
+      handlePasswordValidation();
     }
   };
 
@@ -93,6 +87,8 @@ const LoginCard = () => {
         })
         .then((data) => {
           localStorage.setItem('token', data['idToken']);
+          dispatch(userLogin(true));
+          history.push('/');
         });
     }
   };
@@ -101,35 +97,44 @@ const LoginCard = () => {
     dispatch(forgetPasswordPage());
   };
 
-  let greenLinkText;
+  let switchComponentLink;
 
   if (loginPage === 'forgetPassword') {
-    greenLinkText = 'Send Link';
+    switchComponentLink = 'Send Link';
   }
   if (loginPage === 'login') {
-    greenLinkText = 'Log In';
+    switchComponentLink = 'Log In';
   }
   if (loginPage === 'register') {
-    greenLinkText = 'Register';
+    switchComponentLink = 'Register';
   }
 
   return (
     <Card>
       <Container>
         <Text>Email</Text>
-        <Input ref={emailRef} onChange={handleEmailValidation} />
+        <Input
+          ref={emailRef}
+          onBlur={handleEmailValidation}
+          onChange={handleEmailError}
+        />
       </Container>
       {login.emailError && <ErrorText>Please enter a valid email.</ErrorText>}
       {loginPage !== 'forgetPassword' && (
         <Container>
           <Text>Password</Text>
-          <Input ref={passwordRef} onChange={handlePasswordValidation} />
+          <Input
+            ref={passwordRef}
+            type="password"
+            onBlur={handlePasswordValidation}
+            onChange={handlePasswordError}
+          />
         </Container>
       )}
       {login.passwordError && (
         <ErrorText>
-          Your password must have at least 8 caracters, 1 uppercase letter and 1
-          number
+          Your password must have at least 8 characters, 1 uppercase letter, 1
+          lowercase letter and 1 number
         </ErrorText>
       )}
       {loginPage === 'login' && (
@@ -140,7 +145,7 @@ const LoginCard = () => {
         </Button>
       )}
       <Button className={BUTTON_THEME.GHOST} onClick={handleLogin}>
-        <SubmitText>{greenLinkText}</SubmitText>
+        <SubmitText>{switchComponentLink}</SubmitText>
       </Button>
     </Card>
   );

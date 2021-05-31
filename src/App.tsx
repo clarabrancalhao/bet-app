@@ -1,16 +1,21 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import NewBet from './components/NewBetContainer';
 import { getGames } from './modules/games/actions';
+import { userLogin } from './modules/login/actions';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NewGame from './pages/NewGame';
 
 const App = () => {
   const dispatch = useDispatch();
+  const isLogged = useSelector((state: RootStateOrAny) => state.login.isLogged);
 
   useEffect(() => {
-    console.log('testetste');
+    if (localStorage.getItem('token')) {
+      dispatch(userLogin(true));
+    }
     dispatch(getGames());
   }, [dispatch]);
 
@@ -18,13 +23,16 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/login">
-          <Login />
+          {!isLogged && <Login />}
+          {isLogged && <Redirect to="/" />}
         </Route>
         <Route path="/" exact>
-          <Home />
+          {isLogged && <Home />}
+          {!isLogged && <Redirect to="/login" />}
         </Route>
         <Route path="/new-bet">
-          <NewGame />
+          {isLogged && <NewGame />}
+          {!isLogged && <Redirect to="/login" />}
         </Route>
       </Switch>
     </BrowserRouter>

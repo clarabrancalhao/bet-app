@@ -6,7 +6,6 @@ export const Container = styled.div`
   height: 100vh;
   width: 100vw;
   justify-content: space-between;
-  overflow: hidden;
 `;
 
 export const Container1 = styled.div`
@@ -16,12 +15,21 @@ export const Container1 = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: auto;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    height: max-content;
+  }
 `;
 
 export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
 `;
 
 export const TitleText = styled.h1`

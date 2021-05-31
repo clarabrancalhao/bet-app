@@ -4,6 +4,10 @@ export const NewBetContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 60%;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const BoldTitle = styled.h1`

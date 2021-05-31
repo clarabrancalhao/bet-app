@@ -22,14 +22,16 @@ interface IProps {
   price: number;
 }
 
-const CartCard: FC<IProps> = (props) => {
+const CartItem: FC<IProps> = (props) => {
   const dispatch = useDispatch();
+
+  const handleRemoveItem = () => {
+    dispatch(removeFromCart(props));
+  };
 
   return (
     <GameCard key={props.id}>
-      <Button
-        className={BUTTON_THEME.GHOST}
-        onClick={() => dispatch(removeFromCart(props))}>
+      <Button className={BUTTON_THEME.GHOST} onClick={handleRemoveItem}>
         <IoTrashOutline
           size={24}
           color="#888888"
@@ -53,4 +55,4 @@ const CartCard: FC<IProps> = (props) => {
   );
 };
 
-export default CartCard;
+export default CartItem;

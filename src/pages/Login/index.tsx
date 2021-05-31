@@ -19,20 +19,6 @@ const Login = () => {
     (state: RootStateOrAny) => state.login.loginPage
   );
 
-  let cardTitle;
-
-  if (loginPage === 'register') {
-    cardTitle = 'Registration';
-  }
-  if (loginPage === 'forgetPassword') {
-    cardTitle = 'Reset Password';
-  }
-  if (loginPage === 'login') {
-    cardTitle = 'Authentication';
-  }
-
-  let buttonFunction;
-
   const handleSingUpPage = () => {
     dispatch(registerPage());
   };
@@ -41,10 +27,20 @@ const Login = () => {
     dispatch(logInPage());
   };
 
-  if (loginPage === 'login') {
-    buttonFunction = handleSingUpPage;
-  } else {
+  let cardTitle;
+  let buttonFunction;
+
+  if (loginPage === 'register') {
+    cardTitle = 'Registration';
     buttonFunction = handleLoginPage;
+  }
+  if (loginPage === 'forgetPassword') {
+    cardTitle = 'Reset Password';
+    buttonFunction = handleLoginPage;
+  }
+  if (loginPage === 'login') {
+    cardTitle = 'Authentication';
+    buttonFunction = handleSingUpPage;
   }
 
   return (

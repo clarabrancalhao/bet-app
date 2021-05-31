@@ -9,6 +9,10 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 0px 3px 25px #00000014;
+
+  @media (max-width: 1000px) {
+    margin-top: 3.2rem;
+  }
 `;
 
 export const Content = styled.div`

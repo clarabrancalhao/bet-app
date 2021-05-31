@@ -14,6 +14,7 @@ export const Container2 = styled.div`
   display: flex;
   justify-content: space-between;
   margin: auto;
+  align-items: center;
 `;
 
 export const TitleContainer = styled.div`
@@ -50,6 +51,10 @@ export const Text = styled.p`
   width: auto;
   margin-left: 3rem;
   margin-right: 2rem;
+
+  &.home-page {
+    margin-left: 4rem;
+  }
 `;
 
 export const ArrowIcon = styled(HiOutlineArrowRight)`

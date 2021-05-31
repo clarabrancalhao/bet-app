@@ -15,6 +15,11 @@ export const Header = styled.div`
   align-items: center;
   width: 100%;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const Container3 = styled.div`
@@ -48,6 +53,5 @@ export const NewGameText = styled.h1`
 `;
 
 export const ArrowIcon = styled(HiOutlineArrowRight)`
-  size: 48px;
   color: #b5c401;
 `;

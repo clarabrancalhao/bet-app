@@ -7,7 +7,7 @@ import { Container, ContentContainer } from './styles';
 const NewGame: React.FC = () => {
   return (
     <Container>
-      <Header />
+      <Header page="new-bet" />
       <ContentContainer>
         <NewBet />
         <Cart />

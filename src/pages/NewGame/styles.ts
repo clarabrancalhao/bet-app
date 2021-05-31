@@ -14,4 +14,9 @@ export const ContentContainer = styled.div`
   justify-content: space-between;
   margin: 7rem auto;
   align-items: start;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;

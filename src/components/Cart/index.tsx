@@ -8,20 +8,22 @@ import {
   LightText,
   TotalContainer,
 } from './styles';
-import CartCard from '../CartCard';
+import CartItem from '../CartItem';
 import { saveCart } from '../../modules/cart/actions';
 import { Button, BUTTON_THEME } from '../Button/styles';
 
 const Cart = () => {
   const dispatch = useDispatch();
+
   const games: ICartGame[] = useSelector(
     (state: RootStateOrAny) => state.cart.games
   );
-
-  const total = useSelector((state: RootStateOrAny) => state.cart.totalAmount);
+  const totalAmount = useSelector(
+    (state: RootStateOrAny) => state.cart.totalAmount
+  );
 
   const handleSaveCart = () => {
-    if (total > games[0]['min-cart-value']) {
+    if (totalAmount > games[0]['min-cart-value']) {
       dispatch(saveCart(games));
     }
   };
@@ -33,7 +35,7 @@ const Cart = () => {
         <GamesContainer>
           {games?.map((game) => {
             return (
-              <CartCard
+              <CartItem
                 key={game.id}
                 id={game.id}
                 color={game.color}
@@ -48,7 +50,7 @@ const Cart = () => {
           <BoldText>CART</BoldText>
           <LightText>
             TOTAL:{' '}
-            {total.toLocaleString('pt-BR', {
+            {totalAmount.toLocaleString('pt-BR', {
               style: 'currency',
               currency: 'BRL',
             })}

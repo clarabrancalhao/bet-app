@@ -1,5 +1,8 @@
+import { FC } from 'react';
 import { HiOutlineArrowRight } from 'react-icons/hi';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { userLogin } from '../../modules/login/actions';
 import { Button, BUTTON_THEME } from '../Button/styles';
 import {
   Title,
@@ -11,27 +14,38 @@ import {
   ButtonsContainer,
 } from './styles';
 
-const Header = () => {
+interface IProps {
+  page: string;
+}
+
+const Header: FC<IProps> = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(userLogin(false));
+    localStorage.removeItem('token');
+  };
+
+  const handleHomeRedirect = () => {
+    history.push('/');
+  };
 
   return (
     <Container>
       <Container2>
-        <TitleContainer>
-          <Title>TGL</Title>
-          <Marker />
-        </TitleContainer>
         <ButtonsContainer>
-          <Button
-            className={BUTTON_THEME.GHOST}
-            onClick={() => {
-              history.push('/');
-            }}>
+          <TitleContainer>
+            <Title>TGL</Title>
+            <Marker />
+          </TitleContainer>
+          {props.page === 'home' && <Text className="home-page">Home</Text>}
+        </ButtonsContainer>
+        <ButtonsContainer>
+          <Button className={BUTTON_THEME.GHOST} onClick={handleHomeRedirect}>
             <Text>Account</Text>
           </Button>
-          <Button
-            className={BUTTON_THEME.GHOST}
-            onClick={() => history.push('/login')}>
+          <Button className={BUTTON_THEME.GHOST} onClick={handleLogout}>
             <Text>Log out</Text>
             <HiOutlineArrowRight size={24} color="#707070" />
           </Button>
