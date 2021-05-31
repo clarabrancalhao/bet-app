@@ -1,6 +1,7 @@
 import RecentGameCard from '../RecentGameCard';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import {
+  ArrowIcon,
   Container,
   Container3,
   Header,
@@ -12,12 +13,10 @@ import {
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { ICartGame } from '../../utils/interfaces';
-import SelectGameCard from '../SelectGameCard';
 import { useEffect } from 'react';
 import { getCompletedGames } from '../../modules/cart/actions';
 import { Button, BUTTON_THEME } from '../Button/styles';
 import FilterGames from '../FilterGames';
-import { ArrowIcon } from '../Header/styles';
 
 const RecentGamesContent = () => {
   const dispatch = useDispatch();

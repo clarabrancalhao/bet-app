@@ -48,6 +48,8 @@ export const Text = styled.p`
   font-size: 2rem;
   color: #707070;
   width: auto;
+  margin-left: 3rem;
+  margin-right: 2rem;
 `;
 
 export const ArrowIcon = styled(HiOutlineArrowRight)`

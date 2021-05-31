@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { HiOutlineArrowRight } from 'react-icons/hi';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
+  margin-top: 5rem;
 `;
 
 export const Header = styled.div`
@@ -43,4 +45,9 @@ export const NewGameText = styled.h1`
   white-space: pre;
   width: fit-content;
   align-items: center;
+`;
+
+export const ArrowIcon = styled(HiOutlineArrowRight)`
+  size: 48px;
+  color: #b5c401;
 `;

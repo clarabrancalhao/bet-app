@@ -63,8 +63,37 @@ const LoginCard = () => {
     handlePasswordValidation();
 
     if (!login.emailError && !login.passwordError) {
-      dispatch(userLogin(true));
-      history.push('/');
+      let url;
+      if (loginPage === 'register') {
+        url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
+      }
+      if (loginPage === 'login') {
+        url =
+          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
+      }
+      fetch(`${url}AIzaSyBDvRVhhs1CoFEH3t9yuBMshFMY5MD3yI4`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email: emailRef.current?.value,
+          password: passwordRef.current?.value,
+          returnSecureToken: true,
+        }),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            res.json().then((data) => {
+              console.log(data);
+            });
+          }
+        })
+        .then((data) => {
+          localStorage.setItem('token', data['idToken']);
+        });
     }
   };
 

@@ -17,6 +17,7 @@ import {
 import getRandomNumbers from '../../utils/getRandomNumbers';
 import NumbersContainer from '../NumbersContainer';
 import SelectGameCard from '../SelectGameCard';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useCallback, useEffect } from 'react';
 import { Button, BUTTON_THEME } from '../Button/styles';
 
@@ -89,6 +90,7 @@ const NewBet = () => {
           Clear Game
         </Button>
         <Button className={BUTTON_THEME.ADD_TO_CART} onClick={handleAddToCart}>
+          <AiOutlineShoppingCart size={24} color="#FFFFFF" />
           Add to Cart
         </Button>
       </BottomButtonContainer>

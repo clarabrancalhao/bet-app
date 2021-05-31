@@ -57,6 +57,9 @@ export const Button = styled.button`
     padding: 1.7rem 2.2rem;
     white-space: pre;
     width: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
   &.green-border {

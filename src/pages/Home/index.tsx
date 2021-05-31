@@ -2,13 +2,16 @@ import React from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import RecentGamesContent from '../../components/RecentGamesContent';
-import { Container } from './styles';
+import { Container, TopContainer } from './styles';
 
 const Home = () => {
   return (
     <Container>
-      <Header />
-      <RecentGamesContent />
+      <TopContainer>
+        <Header />
+        <RecentGamesContent />
+      </TopContainer>
+
       <Footer />
     </Container>
   );

@@ -16,13 +16,25 @@ export const Content = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: space-space-between;
+  justify-content: space-between;
 `;
 
 export const GamesContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;
+  height: 24rem;
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    background: transparent;
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #bababa;
+    border-radius: 100px;
+  }
 `;
 
 export const TotalContainer = styled.div`
