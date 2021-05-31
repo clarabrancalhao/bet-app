@@ -4,7 +4,7 @@ import { useSelectGame } from '../../hooks/useSelectGame';
 import { IGame } from '../../utils/interfaces';
 import { Button, BUTTON_THEME } from '../Button/styles';
 
-import { Container } from './styles';
+import { ContentWrapper } from './styles';
 
 const SelectGameCard: FC<{ type: string }> = (props) => {
   const handleSelect = useSelectGame();
@@ -26,7 +26,7 @@ const SelectGameCard: FC<{ type: string }> = (props) => {
   const buttonType = props.type === 'filter' ? selectedFilter : selectedGame;
 
   return (
-    <Container>
+    <ContentWrapper>
       {games.map((game: IGame) => {
         return (
           <Button
@@ -43,7 +43,7 @@ const SelectGameCard: FC<{ type: string }> = (props) => {
           </Button>
         );
       })}
-    </Container>
+    </ContentWrapper>
   );
 };
 

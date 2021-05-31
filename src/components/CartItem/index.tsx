@@ -6,9 +6,9 @@ import { Button, BUTTON_THEME } from '../Button/styles';
 
 import {
   GameCard,
-  GameDetailContainer,
+  InfosWrapper,
   Marker,
-  GameInfosContainer,
+  GameDetailWrapper,
   NumbersText,
   GameTitle,
   LightParagraph,
@@ -39,9 +39,9 @@ const CartItem: FC<IProps> = (props) => {
         />
       </Button>
       <Marker color={props.color} />
-      <GameInfosContainer>
+      <GameDetailWrapper>
         <NumbersText>{props.selectedNumbers.join(', ')}</NumbersText>
-        <GameDetailContainer>
+        <InfosWrapper>
           <GameTitle color={props.color}>{props.type}</GameTitle>
           <LightParagraph>
             {props.price.toLocaleString('pt-BR', {
@@ -49,8 +49,8 @@ const CartItem: FC<IProps> = (props) => {
               currency: 'BRL',
             })}
           </LightParagraph>
-        </GameDetailContainer>
-      </GameInfosContainer>
+        </InfosWrapper>
+      </GameDetailWrapper>
     </GameCard>
   );
 };

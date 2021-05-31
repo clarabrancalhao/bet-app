@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const GameInfosContainer = styled.div`
+export const GameDetailWrapper = styled.div`
   display: flex;
   margin-left: 1.2rem;
   flex-direction: column;
   padding-right: 1.6rem;
 `;
 
-export const GameDetailContainer = styled.div`
+export const InfosWrapper = styled.div`
   margin-top: 0.6rem;
   display: flex;
 `;

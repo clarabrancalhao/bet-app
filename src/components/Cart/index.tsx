@@ -3,10 +3,10 @@ import { ICartGame } from '../../utils/interfaces';
 import {
   BoldText,
   Card,
-  Content,
-  GamesContainer,
+  ContentWrapper,
+  GamesWrapper,
   LightText,
-  TotalContainer,
+  TotalWrapper,
 } from './styles';
 import CartItem from '../CartItem';
 import { saveCart } from '../../modules/cart/actions';
@@ -30,9 +30,9 @@ const Cart = () => {
 
   return (
     <Card>
-      <Content>
+      <ContentWrapper>
         <BoldText>CART</BoldText>
-        <GamesContainer>
+        <GamesWrapper>
           {games?.map((game) => {
             return (
               <CartItem
@@ -45,8 +45,8 @@ const Cart = () => {
               />
             );
           })}
-        </GamesContainer>
-        <TotalContainer>
+        </GamesWrapper>
+        <TotalWrapper>
           <BoldText>CART</BoldText>
           <LightText>
             TOTAL:{' '}
@@ -55,8 +55,8 @@ const Cart = () => {
               currency: 'BRL',
             })}
           </LightText>
-        </TotalContainer>
-      </Content>
+        </TotalWrapper>
+      </ContentWrapper>
       <Button className={BUTTON_THEME.SAVE_CART} onClick={handleSaveCart}>
         Save
       </Button>

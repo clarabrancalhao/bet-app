@@ -6,12 +6,12 @@ import { userLogin } from '../../modules/login/actions';
 import { Button, BUTTON_THEME } from '../Button/styles';
 import {
   Title,
-  TitleContainer,
+  TitleWrapper,
   Container,
   Text,
-  Container2,
+  ContentWrapper,
   Marker,
-  ButtonsContainer,
+  Wrapper,
 } from './styles';
 
 interface IProps {
@@ -33,15 +33,15 @@ const Header: FC<IProps> = (props) => {
 
   return (
     <Container>
-      <Container2>
-        <ButtonsContainer>
-          <TitleContainer>
+      <ContentWrapper>
+        <Wrapper>
+          <TitleWrapper>
             <Title>TGL</Title>
             <Marker />
-          </TitleContainer>
+          </TitleWrapper>
           {props.page === 'home' && <Text className="home-page">Home</Text>}
-        </ButtonsContainer>
-        <ButtonsContainer>
+        </Wrapper>
+        <Wrapper>
           <Button className={BUTTON_THEME.GHOST} onClick={handleHomeRedirect}>
             <Text>Account</Text>
           </Button>
@@ -49,8 +49,8 @@ const Header: FC<IProps> = (props) => {
             <Text>Log out</Text>
             <HiOutlineArrowRight size={24} color="#707070" />
           </Button>
-        </ButtonsContainer>
-      </Container2>
+        </Wrapper>
+      </ContentWrapper>
     </Container>
   );
 };

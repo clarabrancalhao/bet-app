@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const RecentGameWrapper = styled.div`
   display: flex;
   margin-top: 3rem;
 `;
 
-export const ContentContainer = styled.div`
+export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;

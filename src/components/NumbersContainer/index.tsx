@@ -4,7 +4,7 @@ import useSelectNumber from '../../hooks/useSelectNumber';
 import { IGame } from '../../utils/interfaces';
 import { Button, BUTTON_THEME } from '../Button/styles';
 
-import { Container } from './styles';
+import { Wrapper } from './styles';
 
 const NumbersContainer = () => {
   const handleSelectNumber = useSelectNumber();
@@ -22,7 +22,7 @@ const NumbersContainer = () => {
   );
 
   return (
-    <Container>
+    <Wrapper>
       {numbers.map((number) => (
         <Button
           key={number}
@@ -37,7 +37,7 @@ const NumbersContainer = () => {
           {number < 10 ? '0' + number : number}
         </Button>
       ))}
-    </Container>
+    </Wrapper>
   );
 };
 

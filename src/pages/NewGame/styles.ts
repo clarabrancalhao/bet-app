@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const NewBetPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
-export const ContentContainer = styled.div`
+export const ContentWrapper = styled.div`
   width: 80%;
   display: flex;
   justify-content: space-between;

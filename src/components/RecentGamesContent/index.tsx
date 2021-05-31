@@ -1,9 +1,9 @@
 import RecentGameCard from '../RecentGameCard';
 import {
+  ContentWrapper,
   ArrowIcon,
-  Container,
-  Container3,
   Header,
+  HeaderWrapper,
   NewGameText,
   Text1,
   Title,
@@ -36,13 +36,13 @@ const RecentGamesContent = () => {
     : boughtGames;
 
   return (
-    <Container>
+    <ContentWrapper>
       <Header>
-        <Container3>
+        <HeaderWrapper>
           <Title>RECENT GAMES</Title>
           <Text1>Filters</Text1>
           <SelectGameCard type="filter" />
-        </Container3>
+        </HeaderWrapper>
         <Button
           className={BUTTON_THEME.GHOST}
           onClick={() => {
@@ -65,7 +65,7 @@ const RecentGamesContent = () => {
           />
         );
       })}
-    </Container>
+    </ContentWrapper>
   );
 };
 

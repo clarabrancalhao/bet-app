@@ -4,7 +4,7 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import RecentGamesContent from '../../components/RecentGamesContent';
 import { selectFilter } from '../../modules/games/actions';
-import { Container, TopContainer } from './styles';
+import { ContentWrapper, TopContentWrapper } from './styles';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,13 +18,13 @@ const Home = () => {
   }, [handleClearFilter]);
 
   return (
-    <Container>
-      <TopContainer>
+    <ContentWrapper>
+      <TopContentWrapper>
         <Header page="home" />
         <RecentGamesContent />
-      </TopContainer>
+      </TopContentWrapper>
       <Footer />
-    </Container>
+    </ContentWrapper>
   );
 };
 

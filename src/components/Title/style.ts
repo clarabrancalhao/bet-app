@@ -25,7 +25,7 @@ export const Title2 = styled.h1`
   margin: 0;
 `;
 
-export const Container = styled.div`
+export const ContentWrapper = styled.div`
   max-width: 38rem;
   display: flex;
   flex-direction: column;

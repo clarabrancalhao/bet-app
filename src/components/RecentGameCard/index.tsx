@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  Container,
-  ContentContainer,
+  ContentWrapper,
   Game,
   Infos,
   Marker,
   Numbers,
+  RecentGameWrapper,
 } from './styles';
 
 interface IProps {
@@ -18,9 +18,9 @@ interface IProps {
 
 const RecentGameCard: React.FC<IProps> = (props) => {
   return (
-    <Container>
+    <RecentGameWrapper>
       <Marker color={props.color} />
-      <ContentContainer>
+      <ContentWrapper>
         <Numbers>{props.numbers.join(', ')}</Numbers>
         <Infos>
           {new Date(props.date).toLocaleDateString()} - (
@@ -31,8 +31,8 @@ const RecentGameCard: React.FC<IProps> = (props) => {
           )
         </Infos>
         <Game color={props.color}>{props.type}</Game>
-      </ContentContainer>
-    </Container>
+      </ContentWrapper>
+    </RecentGameWrapper>
   );
 };
 

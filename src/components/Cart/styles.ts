@@ -15,7 +15,7 @@ export const Card = styled.div`
   }
 `;
 
-export const Content = styled.div`
+export const ContentWrapper = styled.div`
   margin: 3.2rem 1.6rem 4.7rem 1.8rem;
   display: flex;
   height: 100%;
@@ -23,7 +23,7 @@ export const Content = styled.div`
   justify-content: space-between;
 `;
 
-export const GamesContainer = styled.div`
+export const GamesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -41,7 +41,7 @@ export const GamesContainer = styled.div`
   }
 `;
 
-export const TotalContainer = styled.div`
+export const TotalWrapper = styled.div`
   display: flex;
 `;
 

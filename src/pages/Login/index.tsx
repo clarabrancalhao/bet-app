@@ -6,9 +6,9 @@ import LoginCard from '../../components/LoginCard';
 import Title from '../../components/Title';
 import { registerPage, logInPage } from '../../modules/login/actions';
 import {
-  Container,
-  Container1,
-  LoginContainer,
+  LoginContentWrapper,
+  LoginPageWrapper,
+  ContentWrapper,
   SignUpText,
   TitleText,
 } from './styles';
@@ -44,10 +44,10 @@ const Login = () => {
   }
 
   return (
-    <Container>
-      <Container1>
+    <LoginPageWrapper>
+      <ContentWrapper>
         <Title />
-        <LoginContainer>
+        <LoginContentWrapper>
           <TitleText>{cardTitle}</TitleText>
           <LoginCard />
           <Button className={BUTTON_THEME.GHOST} onClick={buttonFunction}>
@@ -55,10 +55,10 @@ const Login = () => {
               {loginPage === 'login' ? 'Sign Up' : 'Back'}
             </SignUpText>
           </Button>
-        </LoginContainer>
-      </Container1>
+        </LoginContentWrapper>
+      </ContentWrapper>
       <Footer />
-    </Container>
+    </LoginPageWrapper>
   );
 };
 

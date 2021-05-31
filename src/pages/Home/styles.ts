@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const ContentWrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -9,7 +9,7 @@ export const Container = styled.div`
   justify-content: space-between;
 `;
 
-export const TopContainer = styled.div`
+export const TopContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

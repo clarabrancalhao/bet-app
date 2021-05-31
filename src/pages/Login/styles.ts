@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const LoginPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: space-between;
 `;
 
-export const Container1 = styled.div`
+export const ContentWrapper = styled.div`
   display: flex;
   width: 80vw;
   height: 80vh;
@@ -21,7 +21,7 @@ export const Container1 = styled.div`
   }
 `;
 
-export const LoginContainer = styled.div`
+export const LoginContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

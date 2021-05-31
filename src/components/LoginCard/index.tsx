@@ -10,7 +10,7 @@ import {
 } from '../../modules/login/actions';
 import {
   Card,
-  Container,
+  ContentWrapper,
   ErrorText,
   ForgetPasswordText,
   Input,
@@ -111,17 +111,17 @@ const LoginCard = () => {
 
   return (
     <Card>
-      <Container>
+      <ContentWrapper>
         <Text>Email</Text>
         <Input
           ref={emailRef}
           onBlur={handleEmailValidation}
           onChange={handleEmailError}
         />
-      </Container>
+      </ContentWrapper>
       {login.emailError && <ErrorText>Please enter a valid email.</ErrorText>}
       {loginPage !== 'forgetPassword' && (
-        <Container>
+        <ContentWrapper>
           <Text>Password</Text>
           <Input
             ref={passwordRef}
@@ -129,7 +129,7 @@ const LoginCard = () => {
             onBlur={handlePasswordValidation}
             onChange={handlePasswordError}
           />
-        </Container>
+        </ContentWrapper>
       )}
       {login.passwordError && (
         <ErrorText>

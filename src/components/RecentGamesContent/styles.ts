@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 
-export const Container = styled.div`
+export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -22,7 +22,7 @@ export const Header = styled.div`
   }
 `;
 
-export const Container3 = styled.div`
+export const HeaderWrapper = styled.div`
   align-items: center;
   display: flex;
 `;

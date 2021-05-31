@@ -10,7 +10,7 @@ export const Card = styled.div`
   box-shadow: 0px 3px 25px #00000014;
 `;
 
-export const Container = styled.div`
+export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border: none;

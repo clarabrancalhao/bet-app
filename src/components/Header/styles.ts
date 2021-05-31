@@ -8,7 +8,7 @@ export const Container = styled.header`
   justify-content: center;
 `;
 
-export const Container2 = styled.div`
+export const ContentWrapper = styled.div`
   white-space: pre;
   max-width: 80%;
   display: flex;
@@ -17,7 +17,7 @@ export const Container2 = styled.div`
   align-items: center;
 `;
 
-export const TitleContainer = styled.div`
+export const TitleWrapper = styled.div`
   padding-top: 15px;
   width: auto;
   display: flex;
@@ -25,7 +25,7 @@ export const TitleContainer = styled.div`
   align-items: center;
 `;
 
-export const ButtonsContainer = styled.div`
+export const Wrapper = styled.div`
   align-items: center;
   display: flex;
   width: auto;
