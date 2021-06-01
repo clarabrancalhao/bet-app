@@ -1,5 +1,6 @@
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { Button, BUTTON_THEME } from '../../components/Button/styles';
+import { BUTTON_THEME } from '../../components/Button/styles';
+import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 import LoginCard from '../../components/LoginCard';
 import Title from '../../components/Title';

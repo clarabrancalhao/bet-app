@@ -3,7 +3,8 @@ import { HiOutlineArrowRight } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { IsUserLogged } from '../../modules/login/actions';
-import { Button, BUTTON_THEME } from '../Button/styles';
+import { BUTTON_THEME } from '../Button/styles';
+import Button from '../Button';
 import {
   Title,
   TitleWrapper,

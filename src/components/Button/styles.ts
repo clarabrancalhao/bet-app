@@ -9,7 +9,7 @@ export const BUTTON_THEME = {
   NUMBER_CELL: 'number-cell',
   NUMBER_CELL_ACTIVE: 'number-cell active',
 };
-export const Button = styled.button`
+export const StyledButton = styled.button`
   &.games {
     border-radius: 10rem;
     border: 2px solid ${({ color }) => color};

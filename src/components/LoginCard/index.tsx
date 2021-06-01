@@ -15,7 +15,8 @@ import {
   SubmitText,
   Text,
 } from './styles';
-import { Button, BUTTON_THEME } from '../Button/styles';
+import { BUTTON_THEME } from '../Button/styles';
+import Button from '../Button';
 import useValidate from '../../hooks/useValidate';
 import { LOGIN_PAGE_LINKS } from '../../utils/constants';
 import useAuthenticate from '../../hooks/useAuthenticate';

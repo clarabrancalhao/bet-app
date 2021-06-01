@@ -14,7 +14,8 @@ import { useHistory } from 'react-router';
 import { ICartGame } from '../../utils/interfaces';
 import { useEffect } from 'react';
 import { getCompletedGames } from '../../modules/cart/actions';
-import { Button, BUTTON_THEME } from '../Button/styles';
+import { BUTTON_THEME } from '../Button/styles';
+import Button from '../Button';
 import SelectGameCard from '../SelectGameCard';
 
 const RecentGamesContent = () => {

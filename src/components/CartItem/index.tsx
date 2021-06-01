@@ -2,7 +2,9 @@ import { FC } from 'react';
 import { IoTrashOutline } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../../modules/cart/actions';
-import { Button, BUTTON_THEME } from '../Button/styles';
+import { ICartGame } from '../../utils/interfaces';
+import { BUTTON_THEME } from '../Button/styles';
+import Button from '../Button';
 
 import {
   GameCard,
@@ -15,11 +17,7 @@ import {
 } from './styles';
 
 interface IProps {
-  type: string;
-  color: string;
-  id: number;
-  selectedNumbers: number[];
-  price: number;
+  game: ICartGame;
 }
 
 const CartItem: FC<IProps> = (props) => {
@@ -30,7 +28,7 @@ const CartItem: FC<IProps> = (props) => {
   };
 
   return (
-    <GameCard key={props.id}>
+    <GameCard key={props.game.id}>
       <Button className={BUTTON_THEME.GHOST} onClick={handleRemoveItem}>
         <IoTrashOutline
           size={24}
@@ -38,13 +36,13 @@ const CartItem: FC<IProps> = (props) => {
           style={{ marginRight: '6px' }}
         />
       </Button>
-      <Marker color={props.color} />
+      <Marker color={props.game.color} />
       <GameDetailWrapper>
-        <NumbersText>{props.selectedNumbers.join(', ')}</NumbersText>
+        <NumbersText>{props.game.selectedNumbers.join(', ')}</NumbersText>
         <InfosWrapper>
-          <GameTitle color={props.color}>{props.type}</GameTitle>
+          <GameTitle color={props.game.color}>{props.game.type}</GameTitle>
           <LightParagraph>
-            {props.price.toLocaleString('pt-BR', {
+            {props.game.price.toLocaleString('pt-BR', {
               style: 'currency',
               currency: 'BRL',
             })}

@@ -10,7 +10,9 @@ import {
 } from './styles';
 import CartItem from '../CartItem';
 import { saveCart } from '../../modules/cart/actions';
-import { Button, BUTTON_THEME } from '../Button/styles';
+import { BUTTON_THEME } from '../Button/styles';
+import Button from '../Button';
+import { handleFormat } from '../../utils/handleFormat';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -34,27 +36,12 @@ const Cart = () => {
         <BoldText>CART</BoldText>
         <GamesWrapper>
           {games?.map((game) => {
-            return (
-              <CartItem
-                key={game.id}
-                id={game.id}
-                color={game.color}
-                type={game.type}
-                selectedNumbers={game.selectedNumbers}
-                price={game.price}
-              />
-            );
+            return <CartItem key={game.id} game={game} />;
           })}
         </GamesWrapper>
         <TotalWrapper>
           <BoldText>CART</BoldText>
-          <LightText>
-            TOTAL:{' '}
-            {totalAmount.toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            })}
-          </LightText>
+          <LightText>TOTAL: {handleFormat(totalAmount)}</LightText>
         </TotalWrapper>
       </ContentWrapper>
       <Button className={BUTTON_THEME.SAVE_CART} onClick={handleSaveCart}>

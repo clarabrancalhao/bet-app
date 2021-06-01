@@ -14,7 +14,8 @@ import NumbersContainer from '../NumbersContainer';
 import SelectGameCard from '../SelectGameCard';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useCallback, useEffect } from 'react';
-import { Button, BUTTON_THEME } from '../Button/styles';
+import { BUTTON_THEME } from '../Button/styles';
+import Button from '../Button';
 import useCompleteGame from '../../hooks/useCompleteGame';
 
 const NewBet = () => {

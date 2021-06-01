@@ -1,4 +1,5 @@
 import React from 'react';
+import { handleFormat } from '../../utils/handleFormat';
 import { ICartGame } from '../../utils/interfaces';
 import {
   ContentWrapper,
@@ -21,11 +22,7 @@ const RecentGameCard: React.FC<IProps> = (props) => {
         <Numbers>{props.game.selectedNumbers.join(', ')}</Numbers>
         <Infos>
           {new Date(props.game.id).toLocaleDateString()} - (
-          {props.game.price.toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-          })}
-          )
+          {handleFormat(props.game.price)})
         </Infos>
         <Game color={props.game.color}>{props.game.type}</Game>
       </ContentWrapper>

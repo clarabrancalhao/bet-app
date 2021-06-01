@@ -2,7 +2,8 @@ import React, { FC } from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { useSelectGame } from '../../hooks/useSelectGame';
 import { IGame } from '../../utils/interfaces';
-import { Button, BUTTON_THEME } from '../Button/styles';
+import { BUTTON_THEME } from '../Button/styles';
+import Button from '../Button';
 
 import { ContentWrapper } from './styles';
 

@@ -2,7 +2,8 @@ import { useMemo } from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import useSelectNumber from '../../hooks/useSelectNumber';
 import { IGame } from '../../utils/interfaces';
-import { Button, BUTTON_THEME } from '../Button/styles';
+import { BUTTON_THEME } from '../Button/styles';
+import Button from '../Button';
 
 import { Wrapper } from './styles';
 
