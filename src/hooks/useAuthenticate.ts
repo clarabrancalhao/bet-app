@@ -2,6 +2,7 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { IsUserLogged } from '../modules/login/actions';
 import axios from 'axios';
+import { notify } from '../utils/notify';
 
 const useAuthenticate = () => {
   const loginPage: string = useSelector(
@@ -34,7 +35,7 @@ const useAuthenticate = () => {
         dispatch(IsUserLogged(true));
         history.push('/');
       })
-      .catch(() => alert('Email or password incorrect'));
+      .catch(() => notify('Email or password incorrect.'));
   };
 
   return handleAuthentication;

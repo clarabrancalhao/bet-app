@@ -9,7 +9,8 @@ export interface IGame {
 }
 
 export interface ICartGame {
-  id: number;
+  id: string;
+  date: number;
   price: number;
   color: string;
   type: string;

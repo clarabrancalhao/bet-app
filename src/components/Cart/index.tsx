@@ -13,6 +13,7 @@ import { saveCart } from '../../modules/cart/actions';
 import { BUTTON_THEME } from '../Button/styles';
 import Button from '../Button';
 import { handleFormat } from '../../utils/handleFormat';
+import { notify } from '../../utils/notify';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -28,13 +29,14 @@ const Cart = () => {
     if (games.length > 0) {
       if (totalAmount > (games && games[0]['min-cart-value'])) {
         dispatch(saveCart(games));
+        notify('Cart Saved!');
       } else {
-        alert(
+        notify(
           `The min cart value is ${handleFormat(games[0]['min-cart-value'])}.`
         );
       }
     } else {
-      alert('You need to add some games to cart');
+      notify('You need to add some games to cart');
     }
   };
 
@@ -42,11 +44,14 @@ const Cart = () => {
     <Card>
       <ContentWrapper>
         <BoldText>CART</BoldText>
-        <GamesWrapper>
-          {games?.map((game) => {
-            return <CartItem key={game.id} game={game} />;
-          })}
-        </GamesWrapper>
+        {games.length === 0 && <BoldText>CART IS EMPTY</BoldText>}
+        {games.length > 0 && (
+          <GamesWrapper>
+            {games.map((game) => {
+              return <CartItem key={game.id} game={game} />;
+            })}
+          </GamesWrapper>
+        )}
         <TotalWrapper>
           <BoldText>CART</BoldText>
           <LightText>TOTAL: {handleFormat(totalAmount)}</LightText>

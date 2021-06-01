@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'react';
 import { ICartGame, IGame } from '../../utils/interfaces';
+import { notify } from '../../utils/notify';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
@@ -14,6 +15,7 @@ export const SAVE_CART_PENDING = 'SAVE_CART_PENDING';
 export const GET_GAMES_PENDING = 'GET_GAMES_PENDING';
 export const GET_GAMES_COMPLETED = 'GET_GAMES_COMPLETED';
 export const GET_GAMES_REJECTED = 'GET_GAMES_REJECTED';
+export const CLEAR_CART = 'CLEAR_CART';
 
 export const completeGame = (numbers: number[]) => ({
   type: COMPLETE_GAME,
@@ -35,13 +37,17 @@ export const addGameToCart = (game: ICartGame) => ({
   payload: game,
 });
 
-export const removeFromCart = (game: any) => ({
+export const removeFromCart = (game: ICartGame) => ({
   type: REMOVE_FROM_CART,
   payload: game,
 });
 
 export const clearGame = () => ({
   type: CLEAR_GAME,
+});
+
+export const clearCart = () => ({
+  type: CLEAR_CART,
 });
 
 export const saveCart = (games: ICartGame[]) => {
@@ -53,7 +59,10 @@ export const saveCart = (games: ICartGame[]) => {
         games,
         { headers: { 'Content-Type': 'application/json' } }
       )
-      .then(() => dispatch(saveCartCompleted()))
+      .then(() => {
+        dispatch(saveCartCompleted());
+        dispatch(clearCart());
+      })
       .catch((error) => dispatch(saveCartReject(error.message)));
   };
 };
@@ -63,8 +72,13 @@ export const getCompletedGames = () => {
     dispatch(getGamesPending());
     axios
       .get('https://bet-app-52a85-default-rtdb.firebaseio.com/games.json')
-      .then((response) => dispatch(getGamesCompleted(response.data)))
-      .catch((error) => dispatch(getGamesReject(error)));
+      .then((response) => {
+        dispatch(getGamesCompleted(response.data));
+      })
+      .catch((error) => {
+        dispatch(getGamesReject(error));
+        notify('Try again later.');
+      });
   };
 };
 

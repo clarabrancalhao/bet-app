@@ -6,6 +6,8 @@ import { IsUserLogged } from './modules/login/actions';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NewGame from './pages/NewGame';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ const App = () => {
       <BrowserRouter>
         <Redirect to="/login" />
         <Login />
+        <ToastContainer style={{ fontSize: '3.2rem' }} />
       </BrowserRouter>
     );
   }
@@ -35,9 +38,11 @@ const App = () => {
         </Route>
         <Route path="/" exact>
           <Home />
+          <ToastContainer style={{ fontSize: '3.2rem' }} />
         </Route>
         <Route path="/new-bet">
           <NewGame />
+          <ToastContainer style={{ fontSize: '3.2rem' }} />
         </Route>
       </Switch>
     </BrowserRouter>

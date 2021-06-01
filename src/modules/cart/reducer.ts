@@ -9,6 +9,7 @@ import {
   GET_GAMES_COMPLETED,
   GET_GAMES_PENDING,
   GET_GAMES_REJECTED,
+  CLEAR_CART,
 } from './actions';
 
 interface IInitialState {
@@ -47,6 +48,12 @@ function cartReducer(state: IInitialState = initialState, action: IAction) {
         ...state,
         games: filteredGames,
         totalAmount: state.totalAmount - action.payload.price,
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        games: [],
+        totalAmount: 0,
       };
 
     case ADD_NUMBER:

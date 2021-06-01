@@ -2,6 +2,7 @@ import React from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { addNumber, removeNumber } from '../modules/cart/actions';
 import { IGame } from '../utils/interfaces';
+import { notify } from '../utils/notify';
 
 const useSelectNumber = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const useSelectNumber = () => {
       if (selected < selectedGame['max-number']) {
         dispatch(addNumber(+event.currentTarget.value));
       } else {
-        window.alert('testee');
+        notify(`You can select aly ${selectedGame['max-number']} numbers`);
       }
     } else {
       dispatch(removeNumber(+event.currentTarget.value));

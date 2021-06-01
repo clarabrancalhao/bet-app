@@ -21,7 +21,7 @@ const RecentGameCard: React.FC<IProps> = (props) => {
       <ContentWrapper>
         <Numbers>{props.game.selectedNumbers.join(', ')}</Numbers>
         <Infos>
-          {new Date(props.game.id).toLocaleDateString()} - (
+          {new Date(props.game.date).toLocaleDateString()} - (
           {handleFormat(props.game.price)})
         </Infos>
         <Game color={props.game.color}>{props.game.type}</Game>

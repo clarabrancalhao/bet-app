@@ -28,9 +28,13 @@ const RecentGamesContent = () => {
     (state: RootStateOrAny) => state.games.selectedFilter
   );
 
+  console.log(boughtGames);
+
   const filteredGames = selectedFilter
     ? boughtGames.filter((game) => game.type === selectedFilter.type)
     : boughtGames;
+
+  console.log(filteredGames);
 
   useEffect(() => {
     dispatch(getCompletedGames());

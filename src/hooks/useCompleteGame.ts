@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { completeGame } from '../modules/cart/actions';
 import { IGame } from '../utils/interfaces';
+import { notify } from '../utils/notify';
 
 const useCompleteGame = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const useCompleteGame = () => {
     selectedGame: IGame
   ) => {
     if (selectedNumbers.length === selectedGame['max-number']) {
-      return window.alert('Your game is already completed.');
+      return notify('Your game is already completed.');
     }
     const randomNumbers = getRandomNumbers(selectedGame, selectedNumbers);
     dispatch(completeGame(randomNumbers));

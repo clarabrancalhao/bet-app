@@ -17,6 +17,8 @@ import { useCallback, useEffect } from 'react';
 import { BUTTON_THEME } from '../Button/styles';
 import Button from '../Button';
 import useCompleteGame from '../../hooks/useCompleteGame';
+import { notify } from '../../utils/notify';
+import { v4 as uuid } from 'uuid';
 
 const NewBet = () => {
   const dispatch = useDispatch();
@@ -36,7 +38,8 @@ const NewBet = () => {
     if (selectedNumbers.length === selectedGame['max-number']) {
       dispatch(
         addGameToCart({
-          id: Date.now(),
+          id: uuid(),
+          date: Date.now(),
           type: selectedGame.type,
           price: selectedGame.price,
           selectedNumbers: selectedNumbers,
@@ -46,7 +49,7 @@ const NewBet = () => {
       );
       dispatch(clearGame());
     } else {
-      alert(`You need to select ${selectedGame['max-number']} numbers`);
+      notify(`You need to select ${selectedGame['max-number']} numbers`);
     }
   };
 
