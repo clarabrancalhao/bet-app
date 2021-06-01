@@ -45,6 +45,8 @@ const NewBet = () => {
         })
       );
       dispatch(clearGame());
+    } else {
+      alert(`You need to select ${selectedGame['max-number']} numbers`);
     }
   };
 

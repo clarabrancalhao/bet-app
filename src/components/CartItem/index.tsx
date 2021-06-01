@@ -24,7 +24,7 @@ const CartItem: FC<IProps> = (props) => {
   const dispatch = useDispatch();
 
   const handleRemoveItem = () => {
-    dispatch(removeFromCart(props));
+    dispatch(removeFromCart(props.game));
   };
 
   return (

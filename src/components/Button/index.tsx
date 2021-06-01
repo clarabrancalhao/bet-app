@@ -7,7 +7,8 @@ const Button: FC<any> = (props) => {
       onClick={props.onClick}
       className={props.className}
       color={props.color}
-      name={props.name}>
+      name={props.name}
+      value={props.value}>
       {props.children}
     </StyledButton>
   );

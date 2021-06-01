@@ -25,8 +25,16 @@ const Cart = () => {
   );
 
   const handleSaveCart = () => {
-    if (totalAmount > games[0]['min-cart-value']) {
-      dispatch(saveCart(games));
+    if (games.length > 0) {
+      if (totalAmount > (games && games[0]['min-cart-value'])) {
+        dispatch(saveCart(games));
+      } else {
+        alert(
+          `The min cart value is ${handleFormat(games[0]['min-cart-value'])}.`
+        );
+      }
+    } else {
+      alert('You need to add some games to cart');
     }
   };
 

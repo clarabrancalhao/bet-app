@@ -33,7 +33,8 @@ const useAuthenticate = () => {
         localStorage.setItem('token', response.data['idToken']);
         dispatch(IsUserLogged(true));
         history.push('/');
-      });
+      })
+      .catch(() => alert('Email or password incorrect'));
   };
 
   return handleAuthentication;
