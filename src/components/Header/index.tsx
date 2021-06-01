@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { userLogin } from '../../modules/login/actions';
+import { IsUserLogged } from '../../modules/login/actions';
 import { Button, BUTTON_THEME } from '../Button/styles';
 import {
   Title,
@@ -23,7 +23,7 @@ const Header: FC<IProps> = (props) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(userLogin(false));
+    dispatch(IsUserLogged(false));
     localStorage.removeItem('token');
   };
 

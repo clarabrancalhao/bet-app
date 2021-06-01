@@ -1,10 +1,9 @@
-import React from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Button, BUTTON_THEME } from '../../components/Button/styles';
 import Footer from '../../components/Footer';
 import LoginCard from '../../components/LoginCard';
 import Title from '../../components/Title';
-import { registerPage, logInPage } from '../../modules/login/actions';
+import { setRegister, setLogIn } from '../../modules/login/actions';
 import {
   LoginContentWrapper,
   LoginPageWrapper,
@@ -20,11 +19,11 @@ const Login = () => {
   );
 
   const handleSingUpPage = () => {
-    dispatch(registerPage());
+    dispatch(setRegister());
   };
 
   const handleLoginPage = () => {
-    dispatch(logInPage());
+    dispatch(setLogIn());
   };
 
   let cardTitle;

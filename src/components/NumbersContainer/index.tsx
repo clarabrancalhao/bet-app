@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import useSelectNumber from '../../hooks/useSelectNumber';
 import { IGame } from '../../utils/interfaces';

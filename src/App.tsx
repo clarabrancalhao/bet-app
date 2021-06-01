@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import { getGames } from './modules/games/actions';
-import { userLogin } from './modules/login/actions';
+import { IsUserLogged } from './modules/login/actions';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NewGame from './pages/NewGame';
@@ -13,7 +13,7 @@ const App = () => {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      dispatch(userLogin(true));
+      dispatch(IsUserLogged(true));
     }
     dispatch(getGames());
   }, [dispatch]);

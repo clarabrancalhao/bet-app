@@ -54,4 +54,7 @@ export const NewGameText = styled.h1`
 
 export const ArrowIcon = styled(HiOutlineArrowRight)`
   color: #b5c401;
+  @media (max-width: 1000px) {
+    width: 24px;
+  }
 `;

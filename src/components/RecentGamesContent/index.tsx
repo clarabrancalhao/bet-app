@@ -27,14 +27,13 @@ const RecentGamesContent = () => {
     (state: RootStateOrAny) => state.games.selectedFilter
   );
 
-  useEffect(() => {
-    dispatch(getCompletedGames());
-  }, [dispatch]);
-
   const filteredGames = selectedFilter
     ? boughtGames.filter((game) => game.type === selectedFilter.type)
     : boughtGames;
 
+  useEffect(() => {
+    dispatch(getCompletedGames());
+  }, [dispatch]);
   return (
     <ContentWrapper>
       <Header>
@@ -49,7 +48,7 @@ const RecentGamesContent = () => {
             history.push('/new-bet');
           }}>
           <NewGameText>
-            New Game <ArrowIcon size={24} />
+            New Game <ArrowIcon size={48} />
           </NewGameText>
         </Button>
       </Header>

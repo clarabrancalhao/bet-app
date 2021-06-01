@@ -2,9 +2,9 @@ import { useRef } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { ILogin } from '../../utils/interfaces';
 import {
-  emailError,
-  forgetPasswordPage,
-  passwordError,
+  setEmailError,
+  setForgetPassword,
+  setPasswordError,
 } from '../../modules/login/actions';
 import {
   Card,
@@ -33,7 +33,7 @@ const LoginCard = () => {
   );
 
   const handleEmailValidation = () => {
-    handleValidation(emailRef, 'email', emailError);
+    handleValidation(emailRef, 'email', setEmailError);
   };
 
   const handleEmailError = () => {
@@ -43,7 +43,7 @@ const LoginCard = () => {
   };
 
   const handlePasswordValidation = () => {
-    handleValidation(passwordRef, 'password', passwordError);
+    handleValidation(passwordRef, 'password', setPasswordError);
   };
 
   const handlePasswordError = () => {
@@ -65,7 +65,7 @@ const LoginCard = () => {
   };
 
   const handleForgetPasswordPage = () => {
-    dispatch(forgetPasswordPage());
+    dispatch(setForgetPassword());
   };
 
   return (

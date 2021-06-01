@@ -1,6 +1,6 @@
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { userLogin } from '../modules/login/actions';
+import { IsUserLogged } from '../modules/login/actions';
 import axios from 'axios';
 
 const useAuthenticate = () => {
@@ -31,7 +31,7 @@ const useAuthenticate = () => {
       )
       .then((response) => {
         localStorage.setItem('token', response.data['idToken']);
-        dispatch(userLogin(true));
+        dispatch(IsUserLogged(true));
         history.push('/');
       });
   };

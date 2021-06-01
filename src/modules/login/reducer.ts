@@ -4,7 +4,7 @@ import {
   SET_LOGIN_PAGE,
   SET_PASSWORD_ERROR,
   SET_REGISTER_PAGE,
-  USER_LOGIN,
+  IS_USER_LOGGED,
 } from './actions';
 
 interface IState {
@@ -39,7 +39,7 @@ function login(state: IState = initialState, action: IAction) {
         passwordError: action.payload,
       };
 
-    case USER_LOGIN:
+    case IS_USER_LOGGED:
       return {
         ...state,
         isLogged: action.payload,
