@@ -7,12 +7,6 @@ import {
   SELECT_FILTER,
 } from './actions';
 
-/* interface IPayload {
-  games: IGame[];
-  error: string;
-  selected: IGame;
-} */
-
 interface IInitialState {
   results: IGame[];
   loading: boolean;
@@ -20,11 +14,6 @@ interface IInitialState {
   selected: IGame | null;
   selectedFilter: IGame | null;
 }
-
-/* interface IAction {
-  type: string;
-  payload: IPayload;
-} */
 
 const initialState = {
   results: [],

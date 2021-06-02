@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { IsUserLogged } from '../../modules/login/actions';
+import { setUserLogged } from '../../modules/login/actions';
 import { BUTTON_THEME } from '../Button/styles';
 import Button from '../Button';
 import {
@@ -14,6 +14,7 @@ import {
   Marker,
   Wrapper,
 } from './styles';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   page: string;
@@ -24,22 +25,25 @@ const Header: FC<IProps> = (props) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(IsUserLogged(false));
+    dispatch(setUserLogged(false));
     localStorage.removeItem('token');
   };
 
   const handleHomeRedirect = () => {
-    history.push('/');
+    history.push('/account');
   };
 
   return (
     <Container>
       <ContentWrapper>
         <Wrapper>
-          <TitleWrapper>
-            <Title>TGL</Title>
-            <Marker />
-          </TitleWrapper>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <TitleWrapper>
+              <Title>TGL</Title>
+              <Marker />
+            </TitleWrapper>
+          </Link>
+
           {props.page === 'home' && <Text className="home-page">Home</Text>}
         </Wrapper>
         <Wrapper>

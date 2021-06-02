@@ -4,7 +4,8 @@ import {
   SET_LOGIN_PAGE,
   SET_PASSWORD_ERROR,
   SET_REGISTER_PAGE,
-  IS_USER_LOGGED,
+  SET_USER_LOGGED,
+  SET_LOADING,
 } from './actions';
 
 interface IState {
@@ -12,6 +13,7 @@ interface IState {
   emailError: boolean;
   passwordError: boolean;
   loginPage: string;
+  isLoading: boolean | null;
 }
 
 interface IAction {
@@ -24,6 +26,7 @@ const initialState = {
   emailError: false,
   passwordError: false,
   loginPage: 'login',
+  isLoading: null,
 };
 
 function login(state: IState = initialState, action: IAction) {
@@ -39,7 +42,7 @@ function login(state: IState = initialState, action: IAction) {
         passwordError: action.payload,
       };
 
-    case IS_USER_LOGGED:
+    case SET_USER_LOGGED:
       return {
         ...state,
         isLogged: action.payload,
@@ -60,6 +63,12 @@ function login(state: IState = initialState, action: IAction) {
       return {
         ...state,
         loginPage: 'register',
+      };
+
+    case SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
       };
 
     default:

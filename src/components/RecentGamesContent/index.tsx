@@ -13,7 +13,7 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { ICartGame } from '../../utils/interfaces';
 import { useEffect } from 'react';
-import { getCompletedGames } from '../../modules/cart/actions';
+import { getSavedGames } from '../../modules/cart/actions';
 import { BUTTON_THEME } from '../Button/styles';
 import Button from '../Button';
 import SelectGameCard from '../SelectGameCard';
@@ -28,17 +28,14 @@ const RecentGamesContent = () => {
     (state: RootStateOrAny) => state.games.selectedFilter
   );
 
-  console.log(boughtGames);
-
   const filteredGames = selectedFilter
     ? boughtGames.filter((game) => game.type === selectedFilter.type)
     : boughtGames;
 
-  console.log(filteredGames);
-
   useEffect(() => {
-    dispatch(getCompletedGames());
+    dispatch(getSavedGames());
   }, [dispatch]);
+
   return (
     <ContentWrapper>
       <Header>

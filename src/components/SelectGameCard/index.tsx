@@ -12,7 +12,6 @@ const SelectGameCard: FC<{ type: string }> = (props) => {
   const games: IGame[] = useSelector(
     (state: RootStateOrAny) => state.games.results
   );
-
   const selectedGame: IGame = useSelector(
     (state: RootStateOrAny) => state.games.selected
   );

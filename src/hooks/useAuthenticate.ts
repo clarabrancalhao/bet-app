@@ -1,6 +1,6 @@
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { IsUserLogged } from '../modules/login/actions';
+import { setUserLogged } from '../modules/login/actions';
 import axios from 'axios';
 import { notify } from '../utils/notify';
 
@@ -32,7 +32,7 @@ const useAuthenticate = () => {
       )
       .then((response) => {
         localStorage.setItem('token', response.data['idToken']);
-        dispatch(IsUserLogged(true));
+        dispatch(setUserLogged(true));
         history.push('/');
       })
       .catch(() => notify('Email or password incorrect.'));

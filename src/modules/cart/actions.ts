@@ -67,7 +67,7 @@ export const saveCart = (games: ICartGame[]) => {
   };
 };
 
-export const getCompletedGames = () => {
+export const getSavedGames = () => {
   return (dispatch: Dispatch<any>) => {
     dispatch(getGamesPending());
     axios
