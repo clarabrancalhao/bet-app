@@ -16,4 +16,12 @@ export const Wrapper = styled.div`
   @media (max-width: 1000px) {
     grid-template-columns: repeat(8, 1fr);
   }
+
+  @media (max-width: 750px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @media (max-width: 550px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 `;

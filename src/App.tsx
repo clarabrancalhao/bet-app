@@ -21,10 +21,16 @@ const App = () => {
     if (localStorage.getItem('token')) {
       dispatch(setLoading(true));
       dispatch(setUserLogged(true));
-      dispatch(setLoading(false));
     }
+    dispatch(setLoading(false));
     dispatch(getGames());
   }, [dispatch]);
+
+  console.log(isLogged);
+
+  if (isLoading) {
+    return <h1>LOADING...</h1>;
+  }
 
   if (!isLogged && isLoading === false) {
     return (
@@ -36,10 +42,6 @@ const App = () => {
         <ToastContainer style={{ fontSize: '3.2rem' }} />
       </BrowserRouter>
     );
-  }
-
-  if (isLoading) {
-    return <h1>LOADING...</h1>;
   }
 
   return (

@@ -25,6 +25,10 @@ export const Header = styled.div`
 export const HeaderWrapper = styled.div`
   align-items: center;
   display: flex;
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const Title = styled.h1`
@@ -41,6 +45,9 @@ export const Text1 = styled.p`
   color: #868686;
   margin-right: 1.5rem;
   align-self: center;
+  @media (max-width: 500px) {
+    align-self: flex-start;
+  }
 `;
 
 export const NewGameText = styled.h1`

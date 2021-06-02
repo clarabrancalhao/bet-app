@@ -20,6 +20,10 @@ export const StyledButton = styled.button`
     width: fit-content;
     background: #ffffff;
     margin-right: 2.2rem;
+
+    @media (max-width: 500px) {
+      margin-bottom: 1.2rem;
+    }
   }
 
   &.games.active {

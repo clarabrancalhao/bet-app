@@ -45,8 +45,20 @@ export const TotalWrapper = styled.div`
   display: flex;
 `;
 
+export const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const BoldText = styled.h1`
   font-size: 2.4rem;
+  color: #707070;
+  width: auto;
+`;
+
+export const NormalText = styled.h1`
+  font-size: 1.6rem;
+  margin-top: 0.8rem;
   color: #707070;
   width: auto;
 `;

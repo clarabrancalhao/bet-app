@@ -6,7 +6,9 @@ import {
   ContentWrapper,
   GamesWrapper,
   LightText,
+  NormalText,
   TotalWrapper,
+  TitleWrapper,
 } from './styles';
 import CartItem from '../CartItem';
 import { saveCart } from '../../modules/cart/actions';
@@ -43,8 +45,10 @@ const Cart = () => {
   return (
     <Card>
       <ContentWrapper>
-        <BoldText>CART</BoldText>
-        {games.length === 0 && <BoldText>CART IS EMPTY</BoldText>}
+        <TitleWrapper>
+          <BoldText>CART</BoldText>
+          {games.length === 0 && <NormalText>Cart is empty</NormalText>}
+        </TitleWrapper>
         {games.length > 0 && (
           <GamesWrapper>
             {games.map((game) => {

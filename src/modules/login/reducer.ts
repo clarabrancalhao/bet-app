@@ -27,7 +27,7 @@ const initialState = {
   emailError: false,
   passwordError: false,
   loginPage: 'login',
-  isLoading: null,
+  isLoading: true,
 };
 
 function login(state: IState = initialState, action: IAction) {
