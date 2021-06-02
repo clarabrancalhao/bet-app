@@ -8,6 +8,7 @@ export const SET_LOGIN_PAGE = 'SET_LOGIN_PAGE';
 export const SET_REGISTER_PAGE = 'SET_REGISTER_PAGE';
 export const SET_FORGET_PASSWORD_PAGE = 'SET_PASSWORD_PAGE';
 export const CHANGE_PASSWORD_PENDING = 'CHANGE_PASSWORD_PENDING';
+export const SET_SECOND_PASSWORD_ERROR = 'SET_SECOND_PASSWORD_ERROR';
 export const SET_LOADING = 'SET_LOADING';
 
 export const changePassword = (password: string) => {
@@ -38,6 +39,11 @@ export const setEmailError = (hasError: boolean) => ({
 
 export const setPasswordError = (hasError: boolean) => ({
   type: SET_PASSWORD_ERROR,
+  payload: hasError,
+});
+
+export const setSecondPasswordError = (hasError: boolean) => ({
+  type: SET_SECOND_PASSWORD_ERROR,
   payload: hasError,
 });
 

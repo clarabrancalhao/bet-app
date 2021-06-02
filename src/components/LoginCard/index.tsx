@@ -9,7 +9,6 @@ import {
 import {
   Card,
   ContentWrapper,
-  ErrorText,
   ForgetPasswordText,
   Input,
   SubmitText,
@@ -20,6 +19,7 @@ import Button from '../Button';
 import useValidate from '../../hooks/useValidate';
 import { LOGIN_PAGE_LINKS } from '../../utils/constants';
 import useAuthenticate from '../../hooks/useAuthenticate';
+import { EmailError, PasswordError } from '../ErrorMessages';
 
 const LoginCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -79,7 +79,7 @@ const LoginCard = () => {
           onChange={handleEmailError}
         />
       </ContentWrapper>
-      {login.emailError && <ErrorText>Please enter a valid email.</ErrorText>}
+      {login.emailError && <EmailError />}
       {loginPage !== 'forgetPassword' && (
         <ContentWrapper>
           <Text>Password</Text>
@@ -91,12 +91,7 @@ const LoginCard = () => {
           />
         </ContentWrapper>
       )}
-      {login.passwordError && (
-        <ErrorText>
-          Your password must have at least 8 characters, 1 uppercase letter, 1
-          lowercase letter and 1 number
-        </ErrorText>
-      )}
+      {login.passwordError && <PasswordError />}
       {loginPage === 'login' && (
         <Button
           className={BUTTON_THEME.GHOST}

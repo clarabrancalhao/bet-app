@@ -3,6 +3,7 @@ import {
   SET_FORGET_PASSWORD_PAGE,
   SET_LOGIN_PAGE,
   SET_PASSWORD_ERROR,
+  SET_SECOND_PASSWORD_ERROR,
   SET_REGISTER_PAGE,
   SET_USER_LOGGED,
   SET_LOADING,
@@ -69,6 +70,12 @@ function login(state: IState = initialState, action: IAction) {
       return {
         ...state,
         isLoading: action.payload,
+      };
+
+    case SET_SECOND_PASSWORD_ERROR:
+      return {
+        ...state,
+        secondPasswordError: action.payload,
       };
 
     default:

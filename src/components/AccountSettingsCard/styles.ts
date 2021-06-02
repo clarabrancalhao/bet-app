@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
   width: 40%;
-  height: 44.4rem;
+  height: 50rem;
   border-radius: 1.4rem;
   background: #ffffff;
   display: flex;
@@ -16,7 +18,7 @@ export const Title = styled.h1`
   color: #868686;
   font-size: 2.2rem;
   text-align: center;
-  margin-bottom: 1.8rem;
+  margin-bottom: 0.8rem;
 `;
 
 export const Input = styled.input`
@@ -32,13 +34,13 @@ export const Label = styled.label`
   text-align: center;
   color: #868686;
   font-size: 1.4rem;
-  margin-top: 1.8rem;
+  margin-top: 0.8rem;
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.8rem;
   width: 70%;
 `;

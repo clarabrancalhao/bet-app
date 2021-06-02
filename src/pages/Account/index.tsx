@@ -1,4 +1,4 @@
-import ChangePasswordCard from '../../components/ChangePasswordCard';
+import AccountSettingsCard from '../../components/AccountSettingsCard';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { Wrapper } from './styles';
@@ -7,7 +7,7 @@ const Account = () => {
   return (
     <Wrapper>
       <Header page="account" />
-      <ChangePasswordCard />
+      <AccountSettingsCard />
       <Footer />
     </Wrapper>
   );
