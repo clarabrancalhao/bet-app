@@ -1,11 +1,12 @@
-import { useRef } from 'react';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { ILogin } from '../../utils/interfaces';
+import { useRef } from 'react'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import { ILogin } from '../../utils/interfaces'
 import {
+  sendEmailPassword,
   setEmailError,
   setForgetPassword,
   setPasswordError,
-} from '../../modules/login/actions';
+} from '../../modules/login/actions'
 import {
   Card,
   ContentWrapper,
@@ -13,61 +14,66 @@ import {
   Input,
   SubmitText,
   Text,
-} from './styles';
-import { BUTTON_THEME } from '../Button/styles';
-import Button from '../Button';
-import useValidate from '../../hooks/useValidate';
-import { LOGIN_PAGE_LINKS } from '../../utils/constants';
-import useAuthenticate from '../../hooks/useAuthenticate';
-import { EmailError, PasswordError } from '../ErrorMessages';
+} from './styles'
+import { BUTTON_THEME } from '../Button/styles'
+import Button from '../Button'
+import useValidate from '../../hooks/useValidate'
+import { LOGIN_PAGE_LINKS } from '../../utils/constants'
+import useAuthenticate from '../../hooks/useAuthenticate'
+import { EmailError, PasswordError } from '../ErrorMessages'
 
 const LoginCard = () => {
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch();
-  const handleValidation = useValidate();
-  const handleAuthentication = useAuthenticate();
+  const emailRef = useRef<HTMLInputElement>(null)
+  const passwordRef = useRef<HTMLInputElement>(null)
+  const dispatch = useDispatch()
+  const handleValidation = useValidate()
+  const handleAuthentication = useAuthenticate()
 
-  const login: ILogin = useSelector((state: RootStateOrAny) => state.login);
+  const login: ILogin = useSelector((state: RootStateOrAny) => state.login)
   const loginPage: string = useSelector(
     (state: RootStateOrAny) => state.login.loginPage
-  );
+  )
 
   const handleEmailValidation = () => {
-    handleValidation(emailRef, 'email', setEmailError);
-  };
+    handleValidation(emailRef, 'email', setEmailError)
+  }
 
   const handleEmailError = () => {
     if (login.emailError) {
-      handleEmailValidation();
+      handleEmailValidation()
     }
-  };
+  }
 
   const handlePasswordValidation = () => {
-    handleValidation(passwordRef, 'password', setPasswordError);
-  };
+    handleValidation(passwordRef, 'password', setPasswordError)
+  }
 
   const handlePasswordError = () => {
     if (login.passwordError) {
-      handlePasswordValidation();
+      handlePasswordValidation()
     }
-  };
+  }
 
   const handleLogin = () => {
-    handleEmailValidation();
-    handlePasswordValidation();
+    if (loginPage === 'forgetPassword') {
+      const emailValue = emailRef.current!.value
+      dispatch(sendEmailPassword(emailValue))
+      return
+    }
+    handleEmailValidation()
+    handlePasswordValidation()
 
     if (!login.emailError && !login.passwordError) {
-      const emailValue = emailRef.current!.value;
-      const passwordValue = passwordRef.current!.value;
+      const emailValue = emailRef.current!.value
+      const passwordValue = passwordRef.current!.value
 
-      handleAuthentication(emailValue, passwordValue);
+      handleAuthentication(emailValue, passwordValue)
     }
-  };
+  }
 
   const handleForgetPasswordPage = () => {
-    dispatch(setForgetPassword());
-  };
+    dispatch(setForgetPassword())
+  }
 
   return (
     <Card>
@@ -103,7 +109,7 @@ const LoginCard = () => {
         <SubmitText>{LOGIN_PAGE_LINKS[loginPage]}</SubmitText>
       </Button>
     </Card>
-  );
-};
+  )
+}
 
-export default LoginCard;
+export default LoginCard

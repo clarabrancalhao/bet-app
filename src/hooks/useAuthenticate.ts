@@ -1,44 +1,35 @@
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
-import { setUserLogged } from '../modules/login/actions';
-import axios from 'axios';
-import { notify } from '../utils/notify';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
+import { setUserLogged } from '../modules/login/actions'
+import axios from 'axios'
+import { notify } from '../utils/notify'
 
 const useAuthenticate = () => {
   const loginPage: string = useSelector(
     (state: RootStateOrAny) => state.login.loginPage
-  );
-  const dispatch = useDispatch();
-  const history = useHistory();
+  )
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   const handleAuthentication = (emailValue: string, passwordValue: string) => {
-    const url =
-      loginPage === 'register'
-        ? 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
-        : 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
+    const body = { email: emailValue, password: passwordValue }
+    const url = 'http://localhost:3333/sessions'
+
+    if (loginPage === 'register') {
+      axios.post('http://localhost:3333/users', body)
+    }
     axios
-      .post(
-        `${url}AIzaSyBDvRVhhs1CoFEH3t9yuBMshFMY5MD3yI4`,
-        JSON.stringify({
-          email: emailValue,
-          password: passwordValue,
-          returnSecureToken: true,
-        }),
-        {
-          headers: {
-            'Content-type': 'application/json',
-          },
-        }
-      )
+      .post(url, body)
       .then((response) => {
-        localStorage.setItem('token', response.data['idToken']);
-        dispatch(setUserLogged(true));
-        history.push('/');
+        localStorage.setItem('token', response.data.token)
+        localStorage.setItem('user_id', response.data.user_id)
+        dispatch(setUserLogged(true))
+        history.push('/')
       })
-      .catch(() => notify('Email or password incorrect.'));
-  };
+      .catch(() => notify('Email or password incorrect.'))
+  }
 
-  return handleAuthentication;
-};
+  return handleAuthentication
+}
 
-export default useAuthenticate;
+export default useAuthenticate

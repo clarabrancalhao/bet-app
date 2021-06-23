@@ -1,29 +1,29 @@
-import React, { FC } from 'react';
-import { RootStateOrAny, useSelector } from 'react-redux';
-import { useSelectGame } from '../../hooks/useSelectGame';
-import { IGame } from '../../utils/interfaces';
-import { BUTTON_THEME } from '../Button/styles';
-import Button from '../Button';
+import React, { FC } from 'react'
+import { RootStateOrAny, useSelector } from 'react-redux'
+import { useSelectGame } from '../../hooks/useSelectGame'
+import { IGame } from '../../utils/interfaces'
+import { BUTTON_THEME } from '../Button/styles'
+import Button from '../Button'
 
-import { ContentWrapper } from './styles';
+import { ContentWrapper } from './styles'
 
 const SelectGameCard: FC<{ type: string }> = (props) => {
-  const handleSelect = useSelectGame();
+  const handleSelect = useSelectGame()
   const games: IGame[] = useSelector(
     (state: RootStateOrAny) => state.games.results
-  );
+  )
   const selectedGame: IGame = useSelector(
     (state: RootStateOrAny) => state.games.selected
-  );
+  )
   const selectedFilter: IGame = useSelector(
     (state: RootStateOrAny) => state.games.selectedFilter
-  );
+  )
 
   const handleSelectGame = (event: React.MouseEvent<HTMLButtonElement>) => {
-    handleSelect(event, props.type);
-  };
+    handleSelect(event, props.type)
+  }
 
-  const buttonType = props.type === 'filter' ? selectedFilter : selectedGame;
+  const buttonType = props.type === 'filter' ? selectedFilter : selectedGame
 
   return (
     <ContentWrapper>
@@ -41,10 +41,10 @@ const SelectGameCard: FC<{ type: string }> = (props) => {
             onClick={handleSelectGame}>
             {game.type}
           </Button>
-        );
+        )
       })}
     </ContentWrapper>
-  );
-};
+  )
+}
 
-export default SelectGameCard;
+export default SelectGameCard

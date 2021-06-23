@@ -7,19 +7,19 @@ import {
   SET_REGISTER_PAGE,
   SET_USER_LOGGED,
   SET_LOADING,
-} from './actions';
+} from './actions'
 
 interface IState {
-  isLogged: boolean;
-  emailError: boolean;
-  passwordError: boolean;
-  loginPage: string;
-  isLoading: boolean | null;
+  isLogged: boolean
+  emailError: boolean
+  passwordError: boolean
+  loginPage: string
+  isLoading: boolean | null
 }
 
 interface IAction {
-  type: string;
-  payload: boolean;
+  type: string
+  payload: boolean
 }
 
 const initialState = {
@@ -28,7 +28,7 @@ const initialState = {
   passwordError: false,
   loginPage: 'login',
   isLoading: true,
-};
+}
 
 function login(state: IState = initialState, action: IAction) {
   switch (action.type) {
@@ -36,51 +36,52 @@ function login(state: IState = initialState, action: IAction) {
       return {
         ...state,
         emailError: action.payload,
-      };
+      }
     case SET_PASSWORD_ERROR:
       return {
         ...state,
         passwordError: action.payload,
-      };
+      }
 
     case SET_USER_LOGGED:
       return {
         ...state,
         isLogged: action.payload,
-      };
+      }
 
     case SET_FORGET_PASSWORD_PAGE:
       return {
         ...state,
         loginPage: 'forgetPassword',
-      };
+        passwordError: false,
+      }
     case SET_LOGIN_PAGE:
       return {
         ...state,
         loginPage: 'login',
-      };
+      }
 
     case SET_REGISTER_PAGE:
       return {
         ...state,
         loginPage: 'register',
-      };
+      }
 
     case SET_LOADING:
       return {
         ...state,
         isLoading: action.payload,
-      };
+      }
 
     case SET_SECOND_PASSWORD_ERROR:
       return {
         ...state,
         secondPasswordError: action.payload,
-      };
+      }
 
     default:
-      return state;
+      return state
   }
 }
 
-export default login;
+export default login

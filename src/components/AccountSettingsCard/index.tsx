@@ -1,93 +1,83 @@
-import { useCallback, useEffect, useRef } from 'react';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import useValidate from '../../hooks/useValidate';
+import { useCallback, useEffect, useRef } from 'react'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+import useValidate from '../../hooks/useValidate'
 import {
-  setEmailError,
+  changePassword,
   setPasswordError,
   setSecondPasswordError,
-} from '../../modules/login/actions';
-import { notify } from '../../utils/notify';
-import Button from '../Button';
-import { BUTTON_THEME } from '../Button/styles';
-import { EmailError, NewPasswordError, PasswordError } from '../ErrorMessages';
-import { Card, Input, InputWrapper, Label, Title } from './styles';
+} from '../../modules/login/actions'
+import { notify } from '../../utils/notify'
+import Button from '../Button'
+import { BUTTON_THEME } from '../Button/styles'
+import { NewPasswordError, PasswordError } from '../ErrorMessages'
+import { Card, Input, InputWrapper, Label, Title } from './styles'
 
 const AccountSettingsCard = () => {
-  const handleValidation = useValidate();
-  const dispatch = useDispatch();
+  const handleValidation = useValidate()
+  const dispatch = useDispatch()
+  const { search } = useLocation()
 
-  const newPasswordRef = useRef<HTMLInputElement>(null);
-  const repeatNewPasswordRef = useRef<HTMLInputElement>(null);
-  const newEmailRef = useRef<HTMLInputElement>(null);
+  const token = search.slice(1)
 
-  const login = useSelector((state: RootStateOrAny) => state.login);
+  const newPasswordRef = useRef<HTMLInputElement>(null)
+  const repeatNewPasswordRef = useRef<HTMLInputElement>(null)
+
+  const login = useSelector((state: RootStateOrAny) => state.login)
 
   const handlePasswordValidation = () => {
-    handleValidation(newPasswordRef, 'password', setPasswordError);
-  };
+    handleValidation(newPasswordRef, 'password', setPasswordError)
+  }
 
   const handlePasswordError = () => {
     if (login.passwordError) {
-      handlePasswordValidation();
+      handlePasswordValidation()
     }
-  };
-
-  const handleEmailValidation = () => {
-    handleValidation(newEmailRef, 'email', setEmailError);
-  };
-
-  const handleEmailError = () => {
-    if (login.emailError) {
-      handleEmailValidation();
-    }
-  };
+  }
 
   const handleSecondPasswordValidation = () => {
     if (newPasswordRef.current?.value !== repeatNewPasswordRef.current?.value) {
-      dispatch(setSecondPasswordError(true));
+      dispatch(setSecondPasswordError(true))
     } else {
-      dispatch(setSecondPasswordError(false));
+      dispatch(setSecondPasswordError(false))
     }
-  };
+  }
 
   const handleSecondPasswordError = () => {
     if (login.secondPasswordError) {
-      handleSecondPasswordValidation();
+      handleSecondPasswordValidation()
     }
-  };
+  }
 
   const handleChangePassword = () => {
-    if (newPasswordRef.current?.value && repeatNewPasswordRef.current?.value) {
+    const passwordValue = newPasswordRef.current?.value
+    const confirmedPasswordValue = repeatNewPasswordRef.current?.value
+    if (passwordValue && confirmedPasswordValue) {
       if (!login.passwordError && !login.secondPasswordError) {
-        notify('Success!');
-        newPasswordRef.current.value = '';
-        repeatNewPasswordRef.current.value = '';
-        return;
-      }
-      notify('Please, check the passwords');
-    }
-  };
+        dispatch(
+          changePassword({
+            token,
+            password: passwordValue,
+            confirmedPassword: confirmedPasswordValue,
+          })
+        )
 
-  const handleChangeEmail = () => {
-    if (newEmailRef) {
-      if (!login.emailError) {
-        notify('Success!');
-        newEmailRef.current!.value = '';
-        return;
+        newPasswordRef.current!.value = ''
+        repeatNewPasswordRef.current!.value = ''
+        return
       }
-      notify('Please, check your e-mail');
+      notify('Please, check the passwords')
     }
-  };
+  }
 
   const handleRemoveErrors = useCallback(() => {
-    dispatch(setEmailError(false));
-    dispatch(setPasswordError(false));
-    dispatch(setSecondPasswordError(false));
-  }, [dispatch]);
+    dispatch(setPasswordError(false))
+    dispatch(setSecondPasswordError(false))
+  }, [dispatch])
 
   useEffect(() => {
-    return handleRemoveErrors();
-  }, [handleRemoveErrors]);
+    return handleRemoveErrors()
+  }, [handleRemoveErrors])
 
   return (
     <Card>
@@ -117,20 +107,8 @@ const AccountSettingsCard = () => {
         className={BUTTON_THEME.GREEN_BORDER}>
         Save new password!
       </Button>
-      <InputWrapper>
-        <Label>New E-mail</Label>
-        <Input
-          ref={newEmailRef}
-          onBlur={handleEmailValidation}
-          onChange={handleEmailError}
-        />
-        {login.emailError && <EmailError />}
-      </InputWrapper>
-      <Button onClick={handleChangeEmail} className={BUTTON_THEME.GREEN_BORDER}>
-        Save new e-mail!
-      </Button>
     </Card>
-  );
-};
+  )
+}
 
-export default AccountSettingsCard;
+export default AccountSettingsCard
