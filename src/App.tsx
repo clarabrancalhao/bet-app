@@ -9,6 +9,7 @@ import NewGame from './pages/NewGame'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 import Account from './pages/Account'
+import NotFound from './pages/NotFound'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -50,30 +51,31 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/login">
-          {isLogged && isLoading === false && <Redirect to="/" />}
+          {isLogged && <Redirect to="/" />}
           <Login />
         </Route>
         <Route path="/reset-password">
           <Account />
           <ToastContainer style={{ fontSize: '3.2rem' }} />
         </Route>
-        {isLogged && (
-          <>
-            <Route path="/" exact>
-              <Home />
-              <ToastContainer style={{ fontSize: '3.2rem' }} />
-            </Route>
-            <Route path="/new-bet">
-              <NewGame />
-              <ToastContainer style={{ fontSize: '3.2rem' }} />
-            </Route>
-            <Route path="/account">
-              <Account />
-              <ToastContainer style={{ fontSize: '3.2rem' }} />
-            </Route>
-          </>
-        )}
-        <Route></Route>
+        <Route path="/" exact>
+          {!isLogged && <Redirect to="/login" />}
+          <Home />
+          <ToastContainer style={{ fontSize: '3.2rem' }} />
+        </Route>
+        <Route path="/new-bet">
+          {!isLogged && <Redirect to="/login" />}
+          <NewGame />
+          <ToastContainer style={{ fontSize: '3.2rem' }} />
+        </Route>
+        <Route path="/account">
+          {!isLogged && <Redirect to="/login" />}
+          <Account />
+          <ToastContainer style={{ fontSize: '3.2rem' }} />
+        </Route>
+        <Route path="/">
+          <NotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   )

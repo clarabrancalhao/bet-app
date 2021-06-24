@@ -56,7 +56,7 @@ const NewBet = () => {
 
   useEffect(() => {
     return handleClearGame()
-  }, [handleClearGame])
+  }, [handleClearGame, selectedGame])
 
   if (!selectedGame) {
     return null

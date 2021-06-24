@@ -1,13 +1,16 @@
 import React from 'react'
-import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import { Title, ContentWrapper, TextWrapper } from './styles'
 
 const NotFound = () => {
   return (
-    <div>
-      <Header/>
-      <Footer/>
-    </div>
+    <ContentWrapper>
+      <TextWrapper>
+        <Title>404</Title>
+        <Title>Page not found</Title>
+      </TextWrapper>
+      <Footer />
+    </ContentWrapper>
   )
 }
 
